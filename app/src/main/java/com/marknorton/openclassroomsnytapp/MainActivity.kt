@@ -2,22 +2,27 @@ package com.marknorton.openclassroomsnytapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
-import com.marknorton.openclassroomsnytapp.ui.main.SectionsPagerAdapter
+import com.marknorton.openclassroomsnytapp.ui.MostPopularFragment
+import com.marknorton.openclassroomsnytapp.ui.MyPagerAdapter
+import com.marknorton.openclassroomsnytapp.ui.SearchResultsFragment
+import com.marknorton.openclassroomsnytapp.ui.TopStoriesFragment
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.tabs)
+
+        setSupportActionBar(toolbar)
+
+        val adapter = MyPagerAdapter(supportFragmentManager)
+        adapter.addFragment(TopStoriesFragment(), "Top Stories")
+        adapter.addFragment(MostPopularFragment(), "Most Popular")
+        adapter.addFragment(SearchResultsFragment(), "Search Results")
+        viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
-
-
-
     }
 }
