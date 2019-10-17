@@ -4,4 +4,7 @@
     <string name="top_stories">Top Stories</string>
     <string name="most_popular">Most Popular</string>
     <string name="search_results">Search Results</string>
+    <string name="tvSection">Section</string>
+    <string name="tvDate">Date</string>
+    <string name="tvHeadline">Headline</string>
 </resources>
