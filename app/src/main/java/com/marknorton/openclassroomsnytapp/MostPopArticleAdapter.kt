@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
  *
  */
 
-  class ArticleAdapter(val articleList: ArrayList<ArticleModel>): RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
+  class MostPopArticleAdapter(val articleList: ArrayList<ArticleModel>): RecyclerView.Adapter<MostPopArticleAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent?.context).inflate(R.layout.story_row_layout, parent, false)

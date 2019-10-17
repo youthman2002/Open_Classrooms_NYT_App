@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.marknorton.openclassroomsnytapp.ArticleAdapter
 import com.marknorton.openclassroomsnytapp.ArticleModel
 import com.marknorton.openclassroomsnytapp.R
+import com.marknorton.openclassroomsnytapp.TopArticleAdapter
 
 
 class TopStoriesFragment : Fragment() {
@@ -32,7 +32,7 @@ class TopStoriesFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_top_stories, container, false)
         val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
         recyclerview.layoutManager = LinearLayoutManager(activity)
-        recyclerview.adapter = ArticleAdapter(list)
+        recyclerview.adapter = TopArticleAdapter(list)
         return rootView
 
     }
