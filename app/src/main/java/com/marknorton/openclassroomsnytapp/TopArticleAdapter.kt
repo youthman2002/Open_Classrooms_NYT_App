@@ -3,8 +3,12 @@ package com.marknorton.openclassroomsnytapp
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+// import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
+
 
 /**
  *  Created by Mark Norton on 10/16/2019.
@@ -20,9 +24,19 @@ import androidx.recyclerview.widget.RecyclerView
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder?.tvSection?.text = articleList[position].section
-        holder?.imageView2?.text = articleList[position].imageURL
+//        holder?.imageView?.image = articleList[position].imageURL
         holder?.tvHeadline?.text = articleList[position].headline
         holder?.tvDate?.text = articleList[position].date
+
+        Picasso.with(holder.imageView.context)
+            .load(articleList[position].imageURL)
+            .into(holder.imageView)
+
+//        Glide.with(holder?.imageView)
+//            .asGif()
+//            .load(articleList[position].imageURL)
+//            .into(holder?.imageView)
+
     }
 
     override fun getItemCount(): Int {
@@ -31,7 +45,7 @@ import androidx.recyclerview.widget.RecyclerView
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val tvSection: TextView = itemView.findViewById<TextView>(R.id.tvSection)
-        val imageView2: TextView = itemView.findViewById<TextView>(R.id.imageView2)
+        val imageView: ImageView = itemView.findViewById<ImageView>(R.id.imageView)
         val tvHeadline: TextView = itemView.findViewById<TextView>(R.id.tvHeadline)
         val tvDate: TextView = itemView.findViewById<TextView>(R.id.tvDate)
     }

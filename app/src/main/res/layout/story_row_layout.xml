@@ -16,16 +16,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="144dp"
+                android:layout_height="106dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/nothumb" />
+
             <TextView
                 android:id="@+id/tvSection"
                 android:layout_width="74dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
                 android:text="@string/tvSection"
                 android:textColor="#000000"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -34,8 +41,8 @@
                 android:layout_height="22dp"
                 android:text="@string/tvHeadline"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.51"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintHorizontal_bias="0.888"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/tvSection" />
 
             <TextView
@@ -43,7 +50,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
                 android:text="@string/tvDate"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,13 +57,6 @@
                 app:layout_constraintStart_toEndOf="@+id/tvSection"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

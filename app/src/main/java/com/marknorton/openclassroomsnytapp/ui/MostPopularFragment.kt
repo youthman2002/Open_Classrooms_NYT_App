@@ -24,10 +24,10 @@ class MostPopularFragment : Fragment() {
         //     inflater.inflate(R.layout.fragment_top_stories, container, false)
 
         val list = ArrayList<ArticleModel>()
-        list.add(ArticleModel("SectionB1","ImageB1","headlineB1","dateB1"))
-        list.add(ArticleModel("SectionB2","ImageB2","headlineB2","dateB2"))
-        list.add(ArticleModel("SectionB3","ImageB3","headlineB3","dateB3"))
-        list.add(ArticleModel("SectionB4","ImageB4","headlineB4","dateB4"))
+        list.add(ArticleModel("SectionB1","https://www.nytimes.com/images/2019/10/08/insider/08insider-barnardpapers/merlin_161922126_5f249167-3c97-40f1-b5e9-a47f42b115af-articleLarge.jpg","headlineB1","dateB1"))
+        list.add(ArticleModel("SectionB2","https://www.nytimes.com/images/2019/10/08/insider/08insider-barnardpapers/merlin_161922126_5f249167-3c97-40f1-b5e9-a47f42b115af-articleLarge.jpg","headlineB2","dateB2"))
+        list.add(ArticleModel("SectionB3","https://www.nytimes.com/images/2019/10/08/insider/08insider-barnardpapers/merlin_161922126_5f249167-3c97-40f1-b5e9-a47f42b115af-articleLarge.jpg","headlineB3","dateB3"))
+        list.add(ArticleModel("SectionB4","https://www.nytimes.com/images/2019/10/08/insider/08insider-barnardpapers/merlin_161922126_5f249167-3c97-40f1-b5e9-a47f42b115af-articleLarge.jpg","headlineB4","dateB4"))
 
         val rootView = inflater.inflate(R.layout.fragment_most_popular, container, false)
         val recyclerview = rootView.findViewById(R.id.rvMostPopular) as RecyclerView
