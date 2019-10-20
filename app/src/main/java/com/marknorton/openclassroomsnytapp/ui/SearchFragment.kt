@@ -16,7 +16,10 @@ import org.json.JSONObject
 import java.net.URL
 import java.util.*
 
-class TopStoriesFragment : Fragment() {
+
+
+
+class SearchFragment : Fragment() {
     var urls = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,9 +31,10 @@ class TopStoriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-           val rootView = inflater.inflate(R.layout.fragment_top_stories, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_top_stories, container, false)
         doAsync {
-            urls = (URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Entrepreneurs&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
+            urls =
+                (URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Entrepreneurs&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
         }
         var returnList = ArrayList<ArticleModel>()
         Thread.sleep(2000)
@@ -39,11 +43,11 @@ class TopStoriesFragment : Fragment() {
 
         var jsonObjects = (jsonObject?.getJSONArray("docs"))
 
-        var image =""
+        var image = ""
         var url =""
-        var pubDate =""
-        var section =""
-        var theHeadline =""
+        var pubDate = ""
+        var section = ""
+        var theHeadline = ""
 
         for (i in 0 until jsonObjects!!.length()) {
             val c = jsonObjects?.getJSONObject(i)
@@ -55,12 +59,12 @@ class TopStoriesFragment : Fragment() {
             for (j in 0 until imageurl!!.length()) {
                 val d = imageurl?.getJSONObject(j)
                 val subtype = d.getString("subtype")
-  //              Log.d("Log","Log-SUBTYPE:                    $subtype")
+                //              Log.d("Log","Log-SUBTYPE:                    $subtype")
                 if (subtype == "master315") {
 //                    image.add(d.getString("url"))
                     image = (d.getString("url"))
 //                    Log.d("Log","Log-IMAGE:                    $image")
- //                   image = (d.getString("url"))
+                    //                   image = (d.getString("url"))
                     image = "https://www.nytimes.com/$image"
                 }
             }
@@ -69,25 +73,19 @@ class TopStoriesFragment : Fragment() {
             pubDate = (c.getString("pub_date"))
             url = (c.getString("web_url"))
 
-                returnList.add(ArticleModel(section, image, theHeadline, pubDate, url))
-                Log.d("Log","Log-INFO: $section, $image, $theHeadline, $pubDate"
-                )
-             image=""
-            }
+            returnList.add(ArticleModel(section, image, theHeadline, pubDate, url))
+            Log.d(
+                "Log", "Log-INFO: $section, $image, $theHeadline, $pubDate, $url"
+            )
+            image = ""
+        }
 
 
-            val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
-            recyclerview.layoutManager = LinearLayoutManager(activity)
-            recyclerview.adapter = ArticleAdapter(returnList)
-            return rootView
-   //     }
-   //     return rootView
+        val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
+        recyclerview.layoutManager = LinearLayoutManager(activity)
+        recyclerview.adapter = ArticleAdapter(returnList)
+        return rootView
+        //     }
+        //     return rootView
     }
-
 }
-
-
-
-
-
-

@@ -17,10 +17,12 @@ import com.bumptech.glide.request.RequestOptions
  *
  */
 
-  class TopArticleAdapter(val articleList: ArrayList<ArticleModel>): RecyclerView.Adapter<TopArticleAdapter.ViewHolder>() {
+  class ArticleAdapter(val articleList: ArrayList<ArticleModel>): RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
+
+    var activityRef:MainActivity?=null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent?.context).inflate(R.layout.story_row_layout, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.story_row_layout, parent, false)
         return ViewHolder(v)
 
     }
@@ -29,6 +31,19 @@ import com.bumptech.glide.request.RequestOptions
 //        holder.imageView.image = articleList[position].imageURL
         holder.tvHeadline.text = articleList[position].headline
         holder.tvDate.text = articleList[position].date
+
+        holder.tvSection.setOnClickListener{
+            Log.d("Log","Log-ClickedURL:SECTION            "+articleList[position].url)
+        }
+        holder.tvHeadline.setOnClickListener{
+            Log.d("Log","Log-ClickedURL:HEADLINE            "+articleList[position].url)
+        }
+        holder.tvDate.setOnClickListener{
+            Log.d("Log","Log-ClickedURL:DATE            "+articleList[position].url)
+        }
+        holder.imageView.setOnClickListener{
+            Log.d("Log","Log-ClickedURL:IMAGE            "+articleList[position].url)
+        }
 
         Log.d("Log","Log-ADAPTERIMAGE:            "+(articleList[position].imageURL))
         Glide.with(holder.imageView)
@@ -46,9 +61,13 @@ import com.bumptech.glide.request.RequestOptions
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val tvSection: TextView = itemView.findViewById<TextView>(R.id.tvSection)
-        val imageView: ImageView = itemView.findViewById<ImageView>(R.id.imageView)
-        val tvHeadline: TextView = itemView.findViewById<TextView>(R.id.tvHeadline)
-        val tvDate: TextView = itemView.findViewById<TextView>(R.id.tvDate)
+        val tvSection: TextView = itemView.findViewById(R.id.tvSection)
+        val imageView: ImageView = itemView.findViewById(R.id.imageView)
+        val tvHeadline: TextView = itemView.findViewById(R.id.tvHeadline)
+        val tvDate: TextView = itemView.findViewById(R.id.tvDate)
+
+
+
+
     }
 }
