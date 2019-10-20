@@ -1,13 +1,15 @@
 package com.marknorton.openclassroomsnytapp
 
+// import com.bumptech.glide.Glide
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-// import com.bumptech.glide.Glide
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 
 /**
@@ -23,19 +25,19 @@ import com.squareup.picasso.Picasso
 
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder?.tvSection?.text = articleList[position].section
-//        holder?.imageView?.image = articleList[position].imageURL
-        holder?.tvHeadline?.text = articleList[position].headline
-        holder?.tvDate?.text = articleList[position].date
+        holder.tvSection.text = articleList[position].section
+//        holder.imageView.image = articleList[position].imageURL
+        holder.tvHeadline.text = articleList[position].headline
+        holder.tvDate.text = articleList[position].date
 
-        Picasso.with(holder.imageView.context)
+        Log.d("Log","Log-ADAPTERIMAGE:            "+(articleList[position].imageURL))
+        Glide.with(holder.imageView)
             .load(articleList[position].imageURL)
+            .apply(
+                RequestOptions()
+                .placeholder(R.drawable.nothumb)
+            )
             .into(holder.imageView)
-
-//        Glide.with(holder?.imageView)
-//            .asGif()
-//            .load(articleList[position].imageURL)
-//            .into(holder?.imageView)
 
     }
 
