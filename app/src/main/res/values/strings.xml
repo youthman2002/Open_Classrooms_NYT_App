@@ -7,4 +7,12 @@
     <string name="tvSection">Section</string>
     <string name="tvDate">Date</string>
     <string name="tvHeadline">Headline</string>
+    <string name="menuNotification">Notifications</string>
+    <string name="menuHelp">Help</string>
+    <string name="menuAbout">About</string>
+    <string name="menuSearch">Search</string>
+    <string name="menuBack">Back</string>
+    <string name="tvAbout">This is the about paragraph.</string>
+    <string name="tvHelp">This is the help paragraph!!</string>
+    <string name="tvNotification">Notifications</string>
 </resources>

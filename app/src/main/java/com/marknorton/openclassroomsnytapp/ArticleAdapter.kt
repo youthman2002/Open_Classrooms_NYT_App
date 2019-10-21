@@ -39,7 +39,7 @@ import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
 
         holder.tvSection.setOnClickListener{
             val intent = Intent(context, WebViewActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    //        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.putExtra("url", articleList[position].url)
             context!!.startActivity(intent)
 

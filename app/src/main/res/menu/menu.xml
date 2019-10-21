@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="@string/menuNotification"
+        android:id="@+id/menuNotification"/>
+    <item android:title="@string/menuHelp"
+        android:id="@+id/menuHelp"/>
+    <item android:title="@string/menuAbout"
+        android:id="@+id/menuAbout"/>
+
+    <item android:title="@string/menuSearch"
+        android:id="@+id/menuSearch"
+        android:icon="@drawable/magnifyingglass"
+        app:showAsAction="always"
+        />
+
+</menu>
