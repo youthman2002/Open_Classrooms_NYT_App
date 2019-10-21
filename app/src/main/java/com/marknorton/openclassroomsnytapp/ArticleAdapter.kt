@@ -1,6 +1,8 @@
 package com.marknorton.openclassroomsnytapp
 
 // import com.bumptech.glide.Glide
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
 
 
 /**
@@ -17,9 +20,11 @@ import com.bumptech.glide.request.RequestOptions
  *
  */
 
-  class ArticleAdapter(val articleList: ArrayList<ArticleModel>): RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
+  class ArticleAdapter(val articleList: ArrayList<ArticleModel>, context: Context): RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
-    var activityRef:MainActivity?=null
+    private val context: Context = context
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.story_row_layout, parent, false)
@@ -33,7 +38,15 @@ import com.bumptech.glide.request.RequestOptions
         holder.tvDate.text = articleList[position].date
 
         holder.tvSection.setOnClickListener{
+            val intent = Intent(context, WebViewActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.putExtra("url", articleList[position].url)
+            context!!.startActivity(intent)
+
             Log.d("Log","Log-ClickedURL:SECTION            "+articleList[position].url)
+//            val intent = Intent(this.Context, WebViewActivity::class.java)
+//            startActivity(intent)
+
         }
         holder.tvHeadline.setOnClickListener{
             Log.d("Log","Log-ClickedURL:HEADLINE            "+articleList[position].url)
@@ -66,7 +79,7 @@ import com.bumptech.glide.request.RequestOptions
         val tvHeadline: TextView = itemView.findViewById(R.id.tvHeadline)
         val tvDate: TextView = itemView.findViewById(R.id.tvDate)
 
-
+//        var myAdapter = ArticleAdapter(ArticleAdapter)
 
 
     }

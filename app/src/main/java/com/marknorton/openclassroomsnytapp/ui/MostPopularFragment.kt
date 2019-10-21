@@ -32,7 +32,7 @@ class MostPopularFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_most_popular, container, false)
         val recyclerview = rootView.findViewById(R.id.rvMostPopular) as RecyclerView
         recyclerview.layoutManager = LinearLayoutManager(activity)
-        recyclerview.adapter = ArticleAdapter(list)
+        recyclerview.adapter = ArticleAdapter(list, getContext()!!)
         return rootView
 
     }

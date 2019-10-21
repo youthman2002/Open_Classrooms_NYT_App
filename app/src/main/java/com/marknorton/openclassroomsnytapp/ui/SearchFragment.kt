@@ -83,7 +83,7 @@ class SearchFragment : Fragment() {
 
         val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
         recyclerview.layoutManager = LinearLayoutManager(activity)
-        recyclerview.adapter = ArticleAdapter(returnList)
+        recyclerview.adapter = ArticleAdapter(returnList, getContext()!!)
         return rootView
         //     }
         //     return rootView
