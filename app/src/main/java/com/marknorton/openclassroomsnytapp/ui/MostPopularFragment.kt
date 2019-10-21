@@ -1,6 +1,7 @@
 package com.marknorton.openclassroomsnytapp.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,31 +11,79 @@ import androidx.recyclerview.widget.RecyclerView
 import com.marknorton.openclassroomsnytapp.ArticleAdapter
 import com.marknorton.openclassroomsnytapp.ArticleModel
 import com.marknorton.openclassroomsnytapp.R
+import org.jetbrains.anko.doAsync
+import org.json.JSONObject
+import java.net.URL
+import java.util.*
 
 
 class MostPopularFragment : Fragment() {
-
+    var urls = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        //     inflater.inflate(R.layout.fragment_top_stories, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_top_stories, container, false)
+        doAsync {
+            urls =
+                (URL("https://api.nytimes.com/svc/mostpopular/v2/shared/1/facebook.json?api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
+        }
+        var returnList = ArrayList<ArticleModel>()
+        Thread.sleep(2000)
+        var jsonObject: JSONObject? = JSONObject(urls)
+        var jsonObjects = jsonObject?.getJSONArray("results")
 
-        val list = ArrayList<ArticleModel>()
-        list.add(ArticleModel("SectionB1","https://www.nytimes.com/images/2019/10/08/insider/08insider-barnardpapers/merlin_161922126_5f249167-3c97-40f1-b5e9-a47f42b115af-articleLarge.jpg","headlineB1","dateB1", "URL1"))
-        list.add(ArticleModel("SectionB2","https://www.nytimes.com/images/2019/10/08/insider/08insider-barnardpapers/merlin_161922126_5f249167-3c97-40f1-b5e9-a47f42b115af-articleLarge.jpg","headlineB2","dateB2", "URL2"))
-        list.add(ArticleModel("SectionB3","https://www.nytimes.com/images/2019/10/08/insider/08insider-barnardpapers/merlin_161922126_5f249167-3c97-40f1-b5e9-a47f42b115af-articleLarge.jpg","headlineB3","dateB3", "URL3"))
-        list.add(ArticleModel("SectionB4","https://www.nytimes.com/images/2019/10/08/insider/08insider-barnardpapers/merlin_161922126_5f249167-3c97-40f1-b5e9-a47f42b115af-articleLarge.jpg","headlineB4","dateB4", "URL4"))
+        //       var jsonObjects = (jsonObject?.getJSONArray("docs"))
 
-        val rootView = inflater.inflate(R.layout.fragment_most_popular, container, false)
-        val recyclerview = rootView.findViewById(R.id.rvMostPopular) as RecyclerView
+        var image = ""
+        var url = ""
+        var pubDate = ""
+        var section = ""
+        var theHeadline = ""
+
+        for (i in 0 until jsonObjects!!.length()) {
+            val c = jsonObjects?.getJSONObject(i)
+            section = (c!!.getString("section"))
+            theHeadline = (c!!.getString("title"))
+            url = (c!!.getString("url"))
+            pubDate = (c!!.getString("published_date"))
+
+
+            var imageurl = c!!.getJSONArray("media")
+            for (j in 0 until imageurl!!.length()) {
+                val e = imageurl?.getJSONObject(j)
+                Log.d("Log", "Log-MEDIA: $e")
+                var media = e!!.getJSONArray("media-metadata")
+
+                for (k in 0 until media!!.length()) {
+                    val d = media?.getJSONObject(k)
+                    Log.d("Log", "Log-MEDIA-METADATA: $d")
+                    val subtype = d.getString("format")
+                    if (subtype == "Standard Thumbnail") {
+                        image = (d.getString("url"))
+                    }
+                }
+          }
+            returnList.add(ArticleModel(section, image, theHeadline, pubDate, url))
+            Log.d("Log", "Log-INFO: $section, $image, $theHeadline, $pubDate")
+            image = ""
+        }
+
+
+        val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
         recyclerview.layoutManager = LinearLayoutManager(activity)
-        recyclerview.adapter = ArticleAdapter(list, getContext()!!)
+        recyclerview.adapter = ArticleAdapter(returnList, getContext()!!)
         return rootView
-
+        //     }
+        //     return rootView
     }
 
 }
+
+
