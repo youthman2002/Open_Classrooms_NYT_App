@@ -28,61 +28,53 @@ class TopStoriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-           val rootView = inflater.inflate(R.layout.fragment_top_stories, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_top_stories, container, false)
         doAsync {
-            urls = (URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Entrepreneurs&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
+            urls =
+                (URL("https://api.nytimes.com/svc/topstories/v2/science.json?api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
         }
         var returnList = ArrayList<ArticleModel>()
         Thread.sleep(2000)
         var jsonObject: JSONObject? = JSONObject(urls)
-        jsonObject = jsonObject?.getJSONObject("response")
+        var jsonObjects = jsonObject?.getJSONArray("results")
 
-        var jsonObjects = (jsonObject?.getJSONArray("docs"))
+        //       var jsonObjects = (jsonObject?.getJSONArray("docs"))
 
-        var image =""
-        var url =""
-        var pubDate =""
-        var section =""
-        var theHeadline =""
+        var image = ""
+        var url = ""
+        var pubDate = ""
+        var section = ""
+        var theHeadline = ""
 
         for (i in 0 until jsonObjects!!.length()) {
             val c = jsonObjects?.getJSONObject(i)
+            section = (c!!.getString("section"))
+            theHeadline = (c!!.getString("title"))
+            url = (c!!.getString("url"))
+            pubDate = (c!!.getString("published_date"))
 
-            section = (c.getString("section_name"))
 
-            var imageurl = c.getJSONArray("multimedia")
-//            var imageurl = c.getJSONObject("multimedia")
+            var imageurl = c!!.getJSONArray("multimedia")
             for (j in 0 until imageurl!!.length()) {
                 val d = imageurl?.getJSONObject(j)
-                val subtype = d.getString("subtype")
-  //              Log.d("Log","Log-SUBTYPE:                    $subtype")
-                if (subtype == "master315") {
-//                    image.add(d.getString("url"))
+                val subtype = d.getString("format")
+                if (subtype == "Standard Thumbnail") {
                     image = (d.getString("url"))
-//                    Log.d("Log","Log-IMAGE:                    $image")
- //                   image = (d.getString("url"))
-                    image = "https://www.nytimes.com/$image"
                 }
             }
-            var headline = c.getJSONObject("headline")
-            theHeadline = (headline.getString("main"))
-            pubDate = (c.getString("pub_date"))
-            url = (c.getString("web_url"))
-
-                returnList.add(ArticleModel(section, image, theHeadline, pubDate, url))
-                Log.d("Log","Log-INFO: $section, $image, $theHeadline, $pubDate"
-                )
-             image=""
-            }
+            returnList.add(ArticleModel(section, image, theHeadline, pubDate, url))
+            Log.d("Log", "Log-INFO: $section, $image, $theHeadline, $pubDate")
+            image = ""
+        }
 
 
             val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
             recyclerview.layoutManager = LinearLayoutManager(activity)
             recyclerview.adapter = ArticleAdapter(returnList, getContext()!!)
             return rootView
-   //     }
-   //     return rootView
-    }
+            //     }
+            //     return rootView
+        }
 
 }
 
