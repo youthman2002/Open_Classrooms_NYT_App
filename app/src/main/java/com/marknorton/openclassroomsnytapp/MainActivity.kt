@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             R.id.menuNotification -> selectedOption = "notification"
             R.id.menuSearch -> selectedOption = "search"
 //            R.id.exit -> selectedOption = "exit"
+//            R.id.menuBack -> selectedOption = "back"
         }
         when(selectedOption){
             "about" ->{  val intent = Intent(this, About::class.java)
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, SearchFragment::class.java)
                 startActivity(intent)}
 //            "exit" ->{finish()}
+            "back" ->{finish()}
         }
 
         return super.onOptionsItemSelected(item)

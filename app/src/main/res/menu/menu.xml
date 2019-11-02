@@ -13,5 +13,10 @@
         android:icon="@drawable/magnifyingglass"
         app:showAsAction="always"
         />
+    <item android:title="@string/menuBack"
+        android:id="@+id/menuBack"
+        android:icon="@drawable/backarrow"
+        app:showAsAction="always"
+        />
 
 </menu>

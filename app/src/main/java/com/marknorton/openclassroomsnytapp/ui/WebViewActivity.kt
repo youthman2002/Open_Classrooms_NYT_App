@@ -34,7 +34,7 @@ class WebViewActivity : AppCompatActivity() {
             R.id.menuHelp -> selectedOption = "help"
             R.id.menuNotification -> selectedOption = "notification"
             R.id.menuSearch -> selectedOption = "search"
-            R.id.menuBack -> selectedOption = "back"
+//            R.id.menuBack -> selectedOption = "back"
         }
         when(selectedOption){
             "about" ->{  val intent = Intent(this, About::class.java)

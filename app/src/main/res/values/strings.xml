@@ -17,31 +17,11 @@
     <string name="tvNotification">Notifications</string>
     <string name="etSearch">Search Query Term</string>
     <string name="cbArt">Art</string>
-    <string name="cbAutomobiles">Automobiles</string>
-    <string name="cbBooks">Books</string>
     <string name="cbBusiness">Business</string>
-    <string name="cbFashion">Fashion</string>
-    <string name="cbFood">Food</string>
-    <string name="cbHealth">Health</string>
-    <string name="cbHome">Home</string>
-    <string name="cbInsider">Insider</string>
-    <string name="cbMagazine">Magazine</string>
-    <string name="cbMovies">Movies</string>
-    <string name="cbNational">National</string>
-    <string name="cbNYRegion">NY Region</string>
-    <string name="cbObituaries">Obituaries</string>
-    <string name="cbOpinion">Opinion</string>
+    <string name="cbEntrepreneurs">Entrepreneurs</string>
     <string name="cbPolitics">Politics</string>
-    <string name="cbRealEstate">Real Estate</string>
-    <string name="cbScience">Science</string>
     <string name="cbSports">Sports</string>
-    <string name="cbSundayReview">Sunday Review</string>
-    <string name="cbTechnology">Technology</string>
-    <string name="cbTheater">Theater</string>
-    <string name="cbTMagazine">T Magazine</string>
     <string name="cbTravel">Travel</string>
-    <string name="cbUpshot">Upshot</string>
-    <string name="cbWorld">World</string>
     <string name="tvNotificationDescription">Enable Notifications (Once Per Day) \t</string>
 
 
