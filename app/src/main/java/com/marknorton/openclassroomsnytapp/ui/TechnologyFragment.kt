@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,11 +21,23 @@ import java.util.*
 
 
 
-class SearchFragment : Fragment() {
+class TechnologyFragment : Fragment() {
     var urls = ""
+    var counter =0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+//        showDialog()
+
+
+//TODO Program Search
+
+
+
+
+
+
     }
 
     override fun onCreateView(
@@ -34,7 +48,7 @@ class SearchFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_top_stories, container, false)
         doAsync {
             urls =
-                (URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Entrepreneurs&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
+                (URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:(\"Technology\")&q=Science&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
         }
         var returnList = ArrayList<ArticleModel>()
         Thread.sleep(2000)
@@ -60,13 +74,35 @@ class SearchFragment : Fragment() {
                 val d = imageurl?.getJSONObject(j)
                 val subtype = d.getString("subtype")
                 //              Log.d("Log","Log-SUBTYPE:                    $subtype")
-                if (subtype == "master315") {
+
+/*
+                if (subtype == "smallSquare252") {
 //                    image.add(d.getString("url"))
                     image = (d.getString("url"))
 //                    Log.d("Log","Log-IMAGE:                    $image")
                     //                   image = (d.getString("url"))
                     image = "https://www.nytimes.com/$image"
                 }
+*/
+
+
+
+
+
+                if (subtype == "articleInline") {
+//                    image.add(d.getString("url"))
+                    image = (d.getString("url"))
+//                    Log.d("Log","Log-IMAGE:                    $image")
+                    //                   image = (d.getString("url"))
+                    image = "https://www.nytimes.com/$image"
+                }
+
+
+
+
+
+
+
             }
             var headline = c.getJSONObject("headline")
             theHeadline = (headline.getString("main"))
@@ -82,10 +118,72 @@ class SearchFragment : Fragment() {
 
 
         val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
-        recyclerview.layoutManager = LinearLayoutManager(activity)
+        recyclerview.layoutManager = LinearLayoutManager(getActivity())
         recyclerview.adapter = ArticleAdapter(returnList, getContext()!!)
         return rootView
         //     }
         //     return rootView
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private fun showDialog(){
+        lateinit var dialog:AlertDialog
+        val arrayCategories = arrayOf("Art","Business","Entrepreneurs","Politics","Sports","Travel")
+        val arrayChecked = booleanArrayOf(true,false,false,false,false,false)
+        val builder = AlertDialog.Builder(getContext()!!)
+        builder.setTitle("Choose Category . . . ")
+        builder.setMultiChoiceItems(arrayCategories, arrayChecked, {dialog,which,isChecked->
+            arrayChecked[which] = isChecked
+            val category = arrayCategories[which]
+            Toast.makeText(getContext(),"$category clicked.",Toast.LENGTH_SHORT).show()
+        })
+
+        builder.setPositiveButton("OK") { _, _ ->
+            // Do something when click positive button
+            for (i in 0 until arrayCategories.size) {
+                val checked = arrayChecked[i]
+                if (checked) {
+                      counter++
+
+                    if((arrayCategories[i]) == "Art") {
+//   article search api      https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd
+//                text_view.text = "${text_view.text}  ${arrayColors[i]} \n"
+                    }
+                }
+            }
+            Toast.makeText(getContext(),"$counter clicked.",Toast.LENGTH_SHORT).show()
+            if(counter < 1){
+                Toast.makeText(getContext(),"You MUST choose at least 1 Category.",Toast.LENGTH_SHORT).show()
+                showDialog()
+            }
+        }
+        dialog = builder.create()
+        dialog.show()
+        return
+    }
+
+
 }
+

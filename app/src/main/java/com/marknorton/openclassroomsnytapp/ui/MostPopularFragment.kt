@@ -32,14 +32,13 @@ class MostPopularFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_top_stories, container, false)
         doAsync {
             urls =
-                (URL("https://api.nytimes.com/svc/mostpopular/v2/shared/1/facebook.json?api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
+                (URL("https://api.nytimes.com/svc/mostpopular/v2/viewed/30.json?api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
         }
         var returnList = ArrayList<ArticleModel>()
         Thread.sleep(2000)
         var jsonObject: JSONObject? = JSONObject(urls)
         var jsonObjects = jsonObject?.getJSONArray("results")
 
-        //       var jsonObjects = (jsonObject?.getJSONArray("docs"))
 
         var image = ""
         var url = ""

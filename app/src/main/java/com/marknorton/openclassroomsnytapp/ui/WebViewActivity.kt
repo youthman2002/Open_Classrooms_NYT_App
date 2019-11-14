@@ -45,9 +45,11 @@ class WebViewActivity : AppCompatActivity() {
             "notification" ->{val intent = Intent(this, Notification::class.java)
                 startActivity(intent)}
             "search" ->{
-                val intent = Intent(this, SearchFragment::class.java)
+                val intent = Intent(this, TechnologyFragment::class.java)
                 startActivity(intent)}
-            "back" ->{finish()}
+            "back" ->{this.onBackPressed()
+                return true
+            }
         }
 
         return super.onOptionsItemSelected(item)
