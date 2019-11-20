@@ -23,7 +23,10 @@
     <string name="cbSports">Sports</string>
     <string name="cbTravel">Travel</string>
     <string name="tvNotificationDescription">Enable Notifications (Once Per Day) \t</string>
-    
-
+    <string name="sDate">Selected item:</string>
+    <string name="eDate">Selected item:</string>
+    <string name="buSearch">Search</string>
+    <string name="beginTextView">Begin Date</string>
+    <string name="endDate">End Date</string>
 
 </resources>

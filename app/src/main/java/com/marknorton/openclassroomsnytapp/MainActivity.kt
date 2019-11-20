@@ -54,8 +54,10 @@ var counter =0
             "notification" ->{val intent = Intent(this, Notification::class.java)
                 startActivity(intent)}
             "search" ->{
-                showDialog()
-            }
+                val intent = Intent(this, SearchArticles::class.java)
+                startActivity(intent)}
+
+
 //                val intent = Intent(this, SearchActivity::class.java)
 //                startActivity(intent)}
 //            "exit" ->{finish()}
