@@ -12,8 +12,8 @@
     <string name="menuAbout">About</string>
     <string name="menuSearch">Search</string>
     <string name="menuBack">Back</string>
-    <string name="tvAbout">This is the about paragraph.</string>
-    <string name="tvHelp">This is the help paragraph!!</string>
+    <string name="tvAbout">This app was created by Mark Norton for Open Classrooms Module 7 entitled, "Stay Up To Date With The News."\n\n  The app utilizes the New York Times API to find news articles in categories and has the capabilities of searching articles by keyword, date, and category.\n\n  All rights to this app and its codebase are created by Mark Norton and all rights are reserved under USA Copyright Law.</string>
+    <string name="tvHelp">This app was created by Mark Norton for Open Classrooms Module 7 entitled, "Stay Up To Date With The News."\n\n  If you have any questions or comments on this app, or need any help, please reach out by sending an email to marknort@hotmail.com</string>
     <string name="tvNotification">Notifications</string>
     <string name="etSearch">Search Query Term</string>
     <string name="cbArt">Art</string>
