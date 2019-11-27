@@ -59,17 +59,6 @@ class SearchActivity : AppCompatActivity() {
                 val subtype = d.getString("subtype")
                 //              Log.d("Log","Log-SUBTYPE:                    $subtype")
 
-/*
-                if (subtype == "smallSquare252") {
-//                    image.add(d.getString("url"))
-                    image = (d.getString("url"))
-//                    Log.d("Log","Log-IMAGE:                    $image")
-                    //                   image = (d.getString("url"))
-                    image = "https://www.nytimes.com/$image"
-                }
-*/
-
-
 
 
 // "master180"    blog225    "master315"    "thumbLarge"  "square320"
@@ -82,11 +71,6 @@ class SearchActivity : AppCompatActivity() {
                         image = "https://www.nytimes.com/$image"
 
                 }
-
-
-
-
-
 
 
             }

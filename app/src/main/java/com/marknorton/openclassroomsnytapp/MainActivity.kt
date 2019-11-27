@@ -18,15 +18,13 @@ var counter =0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-
         setSupportActionBar(toolbar)
 
         val adapter = MyPagerAdapter(supportFragmentManager)
         adapter.addFragment(TopStoriesFragment(), "Top Stories")
         adapter.addFragment(MostPopularFragment(), "Most Popular")
         adapter.addFragment(TechnologyFragment(), "Technology")
+//        adapter.addFragment(SearchResultsFragment(), "Search Results")
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
     }
@@ -123,6 +121,7 @@ var counter =0
         dialog.show()
         return
     }
+
 }
 
 

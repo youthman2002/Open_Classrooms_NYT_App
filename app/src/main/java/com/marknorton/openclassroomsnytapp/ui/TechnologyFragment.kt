@@ -18,26 +18,12 @@ import org.json.JSONObject
 import java.net.URL
 import java.util.*
 
-
-
-
 class TechnologyFragment : Fragment() {
     var urls = ""
     var counter =0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        showDialog()
-
-
-//TODO Program Search
-
-
-
-
-
-
     }
 
     override fun onCreateView(
@@ -69,40 +55,14 @@ class TechnologyFragment : Fragment() {
             section = (c.getString("section_name"))
 
             var imageurl = c.getJSONArray("multimedia")
-//            var imageurl = c.getJSONObject("multimedia")
             for (j in 0 until imageurl!!.length()) {
                 val d = imageurl?.getJSONObject(j)
                 val subtype = d.getString("subtype")
-                //              Log.d("Log","Log-SUBTYPE:                    $subtype")
-
-/*
-                if (subtype == "smallSquare252") {
-//                    image.add(d.getString("url"))
-                    image = (d.getString("url"))
-//                    Log.d("Log","Log-IMAGE:                    $image")
-                    //                   image = (d.getString("url"))
-                    image = "https://www.nytimes.com/$image"
-                }
-*/
-
-
-
-
 
                 if (subtype == "articleInline") {
-//                    image.add(d.getString("url"))
                     image = (d.getString("url"))
-//                    Log.d("Log","Log-IMAGE:                    $image")
-                    //                   image = (d.getString("url"))
                     image = "https://www.nytimes.com/$image"
                 }
-
-
-
-
-
-
-
             }
             var headline = c.getJSONObject("headline")
             theHeadline = (headline.getString("main"))
@@ -121,31 +81,7 @@ class TechnologyFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(getActivity())
         recyclerview.adapter = ArticleAdapter(returnList, getContext()!!)
         return rootView
-        //     }
-        //     return rootView
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private fun showDialog(){

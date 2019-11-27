@@ -16,6 +16,9 @@ class WebViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
+        val actionbar = supportActionBar
+        actionbar!!.setDisplayHomeAsUpEnabled(true)
+        actionbar!!.setDisplayHomeAsUpEnabled(true)
 
         var url = intent.getStringExtra("url")
 
@@ -53,5 +56,9 @@ class WebViewActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

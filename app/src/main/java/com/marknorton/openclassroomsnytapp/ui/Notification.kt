@@ -12,6 +12,10 @@ class Notification : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
+        val actionbar = supportActionBar
+        actionbar!!.setDisplayHomeAsUpEnabled(true)
+        actionbar!!.setDisplayHomeAsUpEnabled(true)
+
         val artPreferences = getSharedPreferences("art", 0)
         val businessPreferences = getSharedPreferences("business", 0)
         val entreprenerPreferences = getSharedPreferences("entrepreneur", 0)
@@ -111,5 +115,9 @@ class Notification : AppCompatActivity() {
 
 
 
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
