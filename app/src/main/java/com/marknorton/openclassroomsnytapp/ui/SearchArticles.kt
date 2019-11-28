@@ -4,10 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.DatePicker
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.marknorton.openclassroomsnytapp.R
 import kotlinx.android.synthetic.main.activity_search_articles.*
@@ -81,23 +78,22 @@ class SearchArticles : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 categories += "\"Travel\" "
             }
 
-
-            doAsync {
-               urls =
-                    (URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:($categories)&q=$searchString&facet_field=day_of_week&facet=true&begin_date=$startDate&end_date=$endDate&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
+            if((searchString == "")||((!cbArt.isChecked) && (!cbBusiness.isChecked) && (!cbEntrepreneurs.isChecked)&& (!cbPolitics.isChecked) && (!cbSports.isChecked) && (!cbTravel.isChecked))){
+                Toast.makeText(this, "You MUST choose a Keyword and at least 1 Category", Toast.LENGTH_LONG).show()
+            }else {
+                doAsync {
+                    urls =
+                        (URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:($categories)&q=$searchString&facet_field=day_of_week&facet=true&begin_date=$startDate&end_date=$endDate&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
+                }
+                Thread.sleep(2000)
+                    Log.d(
+                        "Log", "Log-URLS-INSEARCH: $urls"
+                    )
+                    val intent = Intent(this, SearchResults::class.java)
+                    intent.putExtra("data", urls)
+                    startActivity(intent)
+                }
             }
-            Thread.sleep(2000)
-            Log.d(
-                "Log", "Log-URLS-INSEARCH: $urls"
-            )
-            val intent = Intent(this, SearchResults::class.java)
-            intent.putExtra("data", urls)
-            startActivity(intent)
-
-
-
-        }
-
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

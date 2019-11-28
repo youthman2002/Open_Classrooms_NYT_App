@@ -28,5 +28,5 @@
     <string name="buSearch">Search</string>
     <string name="beginTextView">Begin Date</string>
     <string name="endDate">End Date</string>
-
+    <string name="menu_home">Home</string>
 </resources>

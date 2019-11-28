@@ -2,6 +2,7 @@ package com.marknorton.openclassroomsnytapp.ui
 
 import android.os.Bundle
 import android.widget.CompoundButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.marknorton.openclassroomsnytapp.R
 import kotlinx.android.synthetic.main.activity_notification.*
@@ -109,10 +110,13 @@ class Notification : AppCompatActivity() {
                 } else {
                     notificationPreferences.edit().putBoolean("checked", false).apply()}}
         })
+        if((!cbArt.isChecked) && (!cbBusiness.isChecked) && (!cbEntrepreneurs.isChecked)&& (!cbPolitics.isChecked) && (!cbSports.isChecked) && (!cbTravel.isChecked)){
+            Toast.makeText(this, "You MUST choose at least 1 Category", Toast.LENGTH_LONG).show()
+        }else {
 
-//        TODO:  At least one MUST be selected before leaving
+//        TODO:  Process Notification
 
-
+        }
 
 
     }
