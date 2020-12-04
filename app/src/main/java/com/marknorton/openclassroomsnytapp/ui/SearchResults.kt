@@ -12,9 +12,7 @@ import org.json.JSONObject
 import java.util.*
 
 class SearchResults : AppCompatActivity() {
-    private val dbName = "NYTDatabase"
-    private val dbVersion = 1
-    private var db = Database(this, dbVersion)
+    private var db = Database(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

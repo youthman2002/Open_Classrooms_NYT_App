@@ -19,13 +19,13 @@ import java.net.URL
 import java.util.*
 
 class SearchActivity : AppCompatActivity() {
-    var urls = ""
-    var counter =0
+    private var urls = ""
+    private var counter =0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-        var categories = intent.getStringExtra("Categories")
+        val categories = intent.getStringExtra("Categories")
 //        Toast.makeText(this,"Categories:$categories", Toast.LENGTH_LONG).show()
 //        val rootView = inflater.inflate(R.layout.fragment_top_stories, container, false)
         Log.d("Log", "Log-CATEGORIES: $categories")
@@ -34,28 +34,28 @@ class SearchActivity : AppCompatActivity() {
                 (URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:($categories)&q=Science&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
             Log.d("Log", "Log-URLS: $urls")
         }
-        var returnList = ArrayList<ArticleModel>()
+        val returnList = ArrayList<ArticleModel>()
         Thread.sleep(2000)
         var jsonObject: JSONObject? = JSONObject(urls)
         jsonObject = jsonObject?.getJSONObject("response")
 
-        var jsonObjects = (jsonObject?.getJSONArray("docs"))
+        val jsonObjects = (jsonObject?.getJSONArray("docs"))
 
         var image = ""
-        var url =""
-        var pubDate = ""
-        var section = ""
-        var theHeadline = ""
+        var url: String
+        var pubDate: String
+        var section: String
+        var theHeadline: String
 
         for (i in 0 until jsonObjects!!.length()) {
-            val c = jsonObjects?.getJSONObject(i)
+            val c = jsonObjects.getJSONObject(i)
 
             section = (c.getString("section_name"))
 
-            var imageurl = c.getJSONArray("multimedia")
+            val imageurl = c.getJSONArray("multimedia")
 //            var imageurl = c.getJSONObject("multimedia")
-            for (j in 0 until imageurl!!.length()) {
-                val d = imageurl?.getJSONObject(j)
+            for (j in 0 until imageurl.length()) {
+                val d = imageurl.getJSONObject(j)
                 val subtype = d.getString("subtype")
                 //              Log.d("Log","Log-SUBTYPE:                    $subtype")
 
@@ -74,7 +74,7 @@ class SearchActivity : AppCompatActivity() {
 
 
             }
-            var headline = c.getJSONObject("headline")
+            val headline = c.getJSONObject("headline")
             theHeadline = (headline.getString("main"))
             pubDate = (c.getString("pub_date"))
             url = (c.getString("web_url"))
@@ -87,7 +87,7 @@ class SearchActivity : AppCompatActivity() {
         }
 
 
-        val recyclerview = findViewById(R.id.rvSearchResults) as RecyclerView
+        val recyclerview = findViewById<RecyclerView>(R.id.rvSearchResults)
         recyclerview.layoutManager = LinearLayoutManager(this)
         recyclerview.adapter = ArticleAdapter(returnList, this)
         return
@@ -100,9 +100,9 @@ class SearchActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu, menu)
         return true
     }
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var selectedOption = ""
-        when (item?.itemId) {
+        when (item.itemId) {
             R.id.menuAbout -> selectedOption = "about"
             R.id.menuHelp -> selectedOption = "help"
             R.id.menuNotification -> selectedOption = "notification"
@@ -137,15 +137,14 @@ class SearchActivity : AppCompatActivity() {
         val arrayChecked = booleanArrayOf(true,false,false,false,false,false)
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Choose Category . . . ")
-        builder.setMultiChoiceItems(arrayCategories, arrayChecked, {dialog,which,isChecked->
+        builder.setMultiChoiceItems(arrayCategories, arrayChecked) { _, which, isChecked ->
             arrayChecked[which] = isChecked
-            val category = arrayCategories[which]
 //            Toast.makeText(this,"$category clicked.", Toast.LENGTH_SHORT).show()
-        })
+        }
 
         builder.setPositiveButton("OK") { _, _ ->
             var categories = ""
-            for (i in 0 until arrayCategories.size) {
+            for (i in arrayCategories.indices) {
                 val checked = arrayChecked[i]
                 if (checked) {
                     counter++

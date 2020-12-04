@@ -19,9 +19,6 @@ import java.util.*
 
 class TopStoriesFragment : Fragment() {
     private var urls = ""
- private val dbName = "NYTDatabase"
- private val dbVersion = 1
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,7 +28,7 @@ class TopStoriesFragment : Fragment() {
         doAsync {
             urls = (URL("https://api.nytimes.com/svc/topstories/v2/science.json?api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
         }
-        val db = Database(context!!, dbVersion)
+        val db = Database(context!!)
 
         val returnList = ArrayList<ArticleModel>()
         Thread.sleep(2500)

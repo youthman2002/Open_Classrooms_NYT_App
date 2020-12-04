@@ -104,9 +104,9 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu, menu)
         return true
     }
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var selectedOption = ""
-        when (item?.itemId) {
+        when (item.itemId) {
             R.id.menuAbout -> selectedOption = "about"
             R.id.menuHelp -> selectedOption = "help"
             R.id.menuNotification -> selectedOption = "notification"
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, SearchArticles::class.java)
                 startActivity(intent)}
         }
-        return super.onOptionsItemSelected(item!!)
+        return super.onOptionsItemSelected(item)
     }
 
 

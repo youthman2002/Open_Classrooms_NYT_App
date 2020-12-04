@@ -1,5 +1,6 @@
 package com.marknorton.openclassroomsnytapp.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,28 +16,28 @@ import java.util.*
 
 
 class SearchArticles : AppCompatActivity(), AdapterView.OnItemSelectedListener {
-    internal lateinit var dpDate: DatePicker
-    var sdate: ArrayList<String> = ArrayList()
-    var edate: ArrayList<String> = ArrayList()
+    private var sdate: ArrayList<String> = ArrayList()
+    private var edate: ArrayList<String> = ArrayList()
 //    var dateFormat = SimpleDateFormat("MM-dd-yyyy")
-    var dateFormat = SimpleDateFormat("yyyy-MM-dd")
-    var urls=""
+@SuppressLint("SimpleDateFormat")
+var dateFormat = SimpleDateFormat("yyyy-MM-dd")
+    private var urls=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_articles)
         val actionbar = supportActionBar
         actionbar!!.setDisplayHomeAsUpEnabled(true)
-        actionbar!!.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
 
-        spStartDate!!.setOnItemSelectedListener(this)
-        spEndDate!!.setOnItemSelectedListener(this)
+        spStartDate!!.onItemSelectedListener = this
+        spEndDate!!.onItemSelectedListener = this
         var counter = 0
         while (counter < 30) {
 
             val cal = Calendar.getInstance()
             cal.add(Calendar.DATE, -counter)
-            var myDate = dateFormat.format(cal.time)
+            val myDate = dateFormat.format(cal.time)
             sdate.add(myDate)
             edate.add(myDate)
             counter++
@@ -45,16 +46,16 @@ class SearchArticles : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         val startAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, sdate)
         startAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spStartDate.setAdapter(startAdapter)
+        spStartDate.adapter = startAdapter
 
 
         val endAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, edate)
         endAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spEndDate.setAdapter(endAdapter)
+        spEndDate.adapter = endAdapter
 
         val buttonClick= findViewById<Button>(R.id.articleSearchButton)
         buttonClick?.setOnClickListener {
-            val searchString = etSearch.getText().toString()
+            val searchString = etSearch.text.toString()
             val startDate = spStartDate.selectedItem.toString()
             val endDate = spEndDate.selectedItem.toString()
             var categories=""

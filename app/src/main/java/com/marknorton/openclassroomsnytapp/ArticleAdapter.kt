@@ -14,7 +14,6 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.marknorton.openclassroomsnytapp.ui.DB_VERSION
 import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
 
 
@@ -34,7 +33,7 @@ import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
 
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val db = Database(context, DB_VERSION)
+        val db = Database(context)
         val result: Cursor = db.getHeadline(articleList[position].headline)
         result.moveToFirst()
         // Populate the data into the List to send to History Info

@@ -17,16 +17,8 @@ import org.json.JSONObject
 import java.net.URL
 import java.util.*
 
-val DB_NAME = "NYTDatabase"
-val DB_VERSION = 1
-
 class MostPopularFragment : Fragment() {
-    var urls = ""
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
+    private var urls = ""
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,36 +29,36 @@ class MostPopularFragment : Fragment() {
             urls =
                 (URL("https://api.nytimes.com/svc/mostpopular/v2/viewed/30.json?api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
         }
-        var db = Database(getContext()!!, DB_VERSION)
+        val db = Database(context!!)
 
-        var returnList = ArrayList<ArticleModel>()
+        val returnList = ArrayList<ArticleModel>()
         Thread.sleep(2000)
-        var jsonObject: JSONObject? = JSONObject(urls)
-        var jsonObjects = jsonObject?.getJSONArray("results")
+        val jsonObject = JSONObject(urls)
+        val jsonObjects = jsonObject.getJSONArray("results")
 
 
         var image = ""
-        var url = ""
-        var pubDate = ""
-        var section = ""
-        var theHeadline = ""
+        var url:String
+        var pubDate:String
+        var section:String
+        var theHeadline:String
 
-        for (i in 0 until jsonObjects!!.length()) {
-            val c = jsonObjects?.getJSONObject(i)
+        for (i in 0 until jsonObjects.length()) {
+            val c = jsonObjects.getJSONObject(i)
             section = (c!!.getString("section"))
-            theHeadline = (c!!.getString("title"))
-            url = (c!!.getString("url"))
-            pubDate = (c!!.getString("published_date"))
+            theHeadline = (c.getString("title"))
+            url = (c.getString("url"))
+            pubDate = (c.getString("published_date"))
 
 
-            var imageurl = c!!.getJSONArray("media")
-            for (j in 0 until imageurl!!.length()) {
-                val e = imageurl?.getJSONObject(j)
+            val imageurl = c.getJSONArray("media")
+            for (j in 0 until imageurl.length()) {
+                val e = imageurl.getJSONObject(j)
 
-                var media = e!!.getJSONArray("media-metadata")
+                val media = e!!.getJSONArray("media-metadata")
 
-                for (k in 0 until media!!.length()) {
-                    val d = media?.getJSONObject(k)
+                for (k in 0 until media.length()) {
+                    val d = media.getJSONObject(k)
                     Log.d("Log", "Log-MEDIA-METADATA: $d")
                     val subtype = d.getString("format")
                     if (subtype == "Standard Thumbnail") {
@@ -87,7 +79,7 @@ class MostPopularFragment : Fragment() {
 
         val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
         recyclerview.layoutManager = LinearLayoutManager(activity)
-        recyclerview.adapter = ArticleAdapter(returnList, getContext()!!)
+        recyclerview.adapter = ArticleAdapter(returnList, context!!)
         return rootView
         //     }
         //     return rootView

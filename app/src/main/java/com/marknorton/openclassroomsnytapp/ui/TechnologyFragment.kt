@@ -18,9 +18,6 @@ import java.util.*
 
  class TechnologyFragment : Fragment() {
     private var urls = ""
-    private val dbName = "NYTDatabase"
-    private val dbVersion = 1
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,7 +28,7 @@ import java.util.*
             urls =
                 (URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:(\"Technology\")&q=Science&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
         }
-        val db = Database(context!!, dbVersion)
+        val db = Database(context!!)
         val returnList = ArrayList<ArticleModel>()
         Thread.sleep(2000)
         var jsonObject: JSONObject? = JSONObject(urls)
