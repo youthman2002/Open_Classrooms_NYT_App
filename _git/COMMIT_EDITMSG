@@ -1,0 +1,16 @@
+Tabs Working
+- Tab1 & Tab2 Recycler Working
+- Top Stories Images Working
+- Images and NoImageAvailable working-OnClick working
+- URL Onclick Working
+- Search Results placeholder working
+- Top Stories Working
+- Most Popular Working
+- Menu Created
+- Working on Notification Screen - Notifications are saving in Shared Preferences
+- Search Category working
+- Search Date Spinners Working - Next create Search Results Page
+- Search and Search Results now working - Spinners need to be updated to DatePicker
+- Back Button Added to all pages on ActionBar
+- About and Help Pages Updated - onClickListener set to CardView instead of individual links on elemets
+--Color Coded Headlines - Red if not viewed - Black Once Viewed

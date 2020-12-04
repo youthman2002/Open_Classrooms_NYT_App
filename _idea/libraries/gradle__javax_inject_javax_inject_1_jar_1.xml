@@ -1,0 +1,6 @@
+Path>HKEY_CLASSES_ROOT\CLSID\{27bd8440-38d8-4310-9198-9b718ce44fca}</Path><Name>Default</Name><Type>REG_SZ</Type><Value>Photoshop GalleryImagesOptions</Value></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{27bd8440-38d8-4310-9198-9b718ce44fca}</Path></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{822adb75-bd9b-49d5-be5b-d5e9b123c36b}\TypeLib</Path><Name>Default</Name><Type>REG_SZ</Type><Value>{E891EE9A-D0AE-4cb4-8871-F92C0109F18E}</Value></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{822adb75-bd9b-49d5-be5b-d5e9b123c36b}\TypeLib</Path></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{822adb75-bd9b-49d5-be5b-d5e9b123c36b}</Path></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{8

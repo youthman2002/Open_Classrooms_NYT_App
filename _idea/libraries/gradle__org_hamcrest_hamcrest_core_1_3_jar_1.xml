@@ -1,0 +1,7 @@
+fault</Name><Type>REG_SZ</Type><Value>Photoshop.GIFSaveOptions</Value></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{08fad7c2-1393-4572-8764-93908dd5d592}\VersionIndependentProgID</Path></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{08fad7c2-1393-4572-8764-93908dd5d592}</Path></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{08fad7c2-1393-4572-8764-93908dd5d592}\ProgID</Path><Name>Default</Name><Type>REG_SZ</Type><Value>Photoshop.GIFSaveOptions.140</Value></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{08fad7c2-1393-4572-8764-93908dd5d592}\ProgID</Path></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{08fad7c2-1393-4572-8764-93908dd5d592}</Path></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSI

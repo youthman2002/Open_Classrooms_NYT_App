@@ -1,0 +1,36 @@
+revent introducing bugs where people
+      wouldn't ensure that, and would switch to row-based mode in the middle
+      of executing a stored function/trigger (which is too late, see also
+      reset_current_stmt_binlog_format_row()); this condition will make their
+      tests fail and so force them to propagate the
+      lex->binlog_row_based_if_mixed upwards to the caller.
+    */
+    if ((wsrep_binlog_format() == BINLOG_FORMAT_MIXED) && (in_sub_stmt == 0))
+      set_current_stmt_binlog_format_row();
+
+    DBUG_VOID_RETURN;
+  }
+
+  inline void set_current_stmt_binlog_format(enum_binlog_format format)
+  {
+    current_stmt_binlog_format= format;
+  }
+
+  inline void set_current_stmt_binlog_format_row()
+  {
+    DBUG_ENTER("set_current_stmt_binlog_format_row");
+    current_stmt_binlog_format= BINLOG_FORMAT_ROW;
+    DBUG_VOID_RETURN;
+  }
+  /* Set binlog format temporarily to statement. Returns old format */
+  inline enum_binlog_format set_current_stmt_binlog_format_stmt()
+  {
+    enum_binlog_format orig_format= current_stmt_binlog_format;
+    DBUG_ENTER("set_current_stmt_binlog_format_stmt");
+    current_stmt_binlog_format= BINLOG_FORMAT_STMT;
+    DBUG_RETURN(orig_format);
+  }
+  inline void restore_stmt_binlog_format(enum_binlog_format format)
+  {
+    DBUG_ENTER("restore_stmt_binlog_format");
+    DBUG_ASSERT(!is_current_stmt_binlog_fo

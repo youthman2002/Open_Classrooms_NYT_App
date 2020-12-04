@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9c62e9d9-1575-4d38-be0f-65cc796d9dd7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/marknorton/openclassroomsnytapp/ui/TopStoriesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/marknorton/openclassroomsnytapp/ui/TopStoriesFragment.kt" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_9_API_29-Tablet" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Open Classrooms NYT App" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="layoutResourceFile_vertical" />
+        <option value="resourceFile" />
+        <option value="Kotlin File" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="ProjectId" id="1aOBVvsCJ8nGZ4xubAkZRH0jZ8k" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_2_API_29" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2019-12-18T05:12:04.583Z" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="android.project.structure.last.selected" value="SDK Location" />
+    <property name="android.project.structure.proportion" value="0.15" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="ignore.virus.scanning.warn.message" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/giphy-android-sdk-ui-example-master/giphy-android-sdk-ui-example-master" />
+    <property name="not.eligible.for.single.variant.sync" value="true" />
+    <property name="project.structure.last.edited" value="Dependencies" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.marknorton.openclassroomsnytapp" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.marknorton.openclassroomsnytapp" />
+      <recent name="com.marknorton.openclassroomsnytapp.ui" />
+    </key>
+    <key name="android.template.packageName">
+      <recent name="com.marknorton.openclassroomsnytapp.ui" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\MyPC\AndroidStudioProjects\OpenClassroomsNYTApp\app\src\main\res\drawable" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\MyPC\AndroidStudioProjects\OpenClassroomsNYTApp\app\src\main\res\drawable-v24" />
+      <recent name="C:\Users\MyPC\AndroidStudioProjects\OpenClassroomsNYTApp\app\src\main\res\menu" />
+      <recent name="C:\Users\MyPC\AndroidStudioProjects\OpenClassroomsNYTApp\app\src\main\res\layout" />
+    </key>
+    <key name="android.template.parentActivityClass">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c62e9d9-1575-4d38-be0f-65cc796d9dd7" name="Default Changelist" comment="" />
+      <created>1571248376055</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1571248376055</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Tabs Working">
+      <created>1571270277006</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1571270277006</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Tabs Working - Tab1 Recycler Working">
+      <created>1571282437197</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1571282437197</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Tabs Working - Tab1 &amp; Tab2 Recycler Working">
+      <created>1571283270306</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1571283270306</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working">
+      <created>1571521154601</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1571521154602</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working">
+      <created>1571543745458</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1571543745458</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working-OnClick working">
+      <created>1571614765349</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1571614765350</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working-OnClick working - URL Onclick Working">
+      <created>1571624436205</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1571624436205</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working-OnClick working - URL Onclick Working - Search Results working - Top Stories Working">
+      <created>1571629670386</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1571629670386</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working-OnClick working - URL Onclick Working - Search Results working - Top Stories Working - Most Popular Working">
+      <created>1571635473128</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1571635473128</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working-OnClick working - URL Onclick Working - Search Results working - Top Stories Working - Most Popular Working - Menu Created">
+      <created>1571692083707</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1571692083707</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working-OnClick working - URL Onclick Working - Search Results working - Top Stories Working - Most Popular Working - Menu Created - Working on Notification Screen">
+      <created>1571697312018</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1571697312018</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences">
+      <created>1572671598421</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1572671598421</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences&#10;- Search Category working">
+      <created>1573763431331</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1573763431331</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences&#10;- Search Category working&#10;- Search Date Spinners Working - Next create Search Results Page">
+      <created>1574246450319</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1574246450319</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences&#10;- Search Category working&#10;- Search Date Spinners Working - Next create Search Results Page&#10;- Search and Search Results now working - Spinners need to be updated to DatePicker&#10;- Back Button Added to all pages on ActionBar">
+      <created>1574870306280</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1574870306281</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences&#10;- Search Category working&#10;- Search Date Spinners Working - Next create Search Results Page&#10;- Search and Search Results now working - Spinners need to be updated to DatePicker&#10;- Back Button Added to all pages on ActionBar&#10;- About and Help Pages Updated - onClickListener set to CardView instead of individual links on elemets">
+      <created>1574885273727</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1574885273727</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences&#10;- Search Category working&#10;- Search Date Spinners Working - Next create Search Results Page&#10;- Search and Search Results now working - Spinners need to be updated to DatePicker&#10;- Back Button Added to all pages on ActionBar&#10;- About and Help Pages Updated - onClickListener set to CardView instead of individual links on elemets">
+      <created>1574940304676</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1574940304676</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences&#10;- Search Category working&#10;- Search Date Spinners Working - Next create Search Results Page&#10;- Search and Search Results now working - Spinners need to be updated to DatePicker&#10;- Back Button Added to all pages on ActionBar&#10;- About and Help Pages Updated - onClickListener set to CardView instead of individual links on elemets&#10;--Color Coded Headlines - Red if not viewed - Black Once Viewed">
+      <created>1576469464078</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1576469464078</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences&#10;- Search Category working&#10;- Search Date Spinners Working - Next create Search Results Page&#10;- Search and Search Results now working - Spinners need to be updated to DatePicker&#10;- Back Button Added to all pages on ActionBar&#10;- About and Help Pages Updated - onClickListener set to CardView instead of individual links on elemets&#10;--Color Coded Headlines - Red if not viewed - Black Once Viewed">
+      <created>1586697291291</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1586697291291</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Tabs Working" />
+    <MESSAGE value="Tabs Working - Tab1 Recycler Working" />
+    <MESSAGE value="Tabs Working - Tab1 &amp; Tab2 Recycler Working" />
+    <MESSAGE value="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working" />
+    <MESSAGE value="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working" />
+    <MESSAGE value="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working-OnClick working" />
+    <MESSAGE value="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working-OnClick working - URL Onclick Working" />
+    <MESSAGE value="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working-OnClick working - URL Onclick Working - Search Results working - Top Stories Working" />
+    <MESSAGE value="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working-OnClick working - URL Onclick Working - Search Results working - Top Stories Working - Most Popular Working" />
+    <MESSAGE value="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working-OnClick working - URL Onclick Working - Search Results working - Top Stories Working - Most Popular Working - Menu Created" />
+    <MESSAGE value="Tabs Working - Tab1 &amp; Tab2 Recycler Working - Top Stories Images Working - Images and NoImageAvailable working-OnClick working - URL Onclick Working - Search Results working - Top Stories Working - Most Popular Working - Menu Created - Working on Notification Screen" />
+    <MESSAGE value="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences" />
+    <MESSAGE value="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences&#10;- Search Category working" />
+    <MESSAGE value="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences&#10;- Search Category working&#10;- Search Date Spinners Working - Next create Search Results Page" />
+    <MESSAGE value="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences&#10;- Search Category working&#10;- Search Date Spinners Working - Next create Search Results Page&#10;- Search and Search Results now working - Spinners need to be updated to DatePicker&#10;- Back Button Added to all pages on ActionBar" />
+    <MESSAGE value="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences&#10;- Search Category working&#10;- Search Date Spinners Working - Next create Search Results Page&#10;- Search and Search Results now working - Spinners need to be updated to DatePicker&#10;- Back Button Added to all pages on ActionBar&#10;- About and Help Pages Updated - onClickListener set to CardView instead of individual links on elemets" />
+    <MESSAGE value="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences&#10;- Search Category working&#10;- Search Date Spinners Working - Next create Search Results Page&#10;- Search and Search Results now working - Spinners need to be updated to DatePicker&#10;- Back Button Added to all pages on ActionBar&#10;- About and Help Pages Updated - onClickListener set to CardView instead of individual links on elemets&#10;--Color Coded Headlines - Red if not viewed - Black Once Viewed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tabs Working &#10;- Tab1 &amp; Tab2 Recycler Working &#10;- Top Stories Images Working &#10;- Images and NoImageAvailable working-OnClick working &#10;- URL Onclick Working &#10;- Search Results placeholder working &#10;- Top Stories Working &#10;- Most Popular Working &#10;- Menu Created &#10;- Working on Notification Screen - Notifications are saving in Shared Preferences&#10;- Search Category working&#10;- Search Date Spinners Working - Next create Search Results Page&#10;- Search and Search Results now working - Spinners need to be updated to DatePicker&#10;- Back Button Added to all pages on ActionBar&#10;- About and Help Pages Updated - onClickListener set to CardView instead of individual links on elemets&#10;--Color Coded Headlines - Red if not viewed - Black Once Viewed" />
+  </component>
+</project>

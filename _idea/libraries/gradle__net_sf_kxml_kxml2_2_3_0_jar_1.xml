@@ -1,0 +1,6 @@
+></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{b24d3780-2629-4ee6-9f9f-6c0a12554b3a}\LocalServer32</Path><Name>Default</Name><Type>REG_SZ</Type><Value>[INSTALLDIR]\Photoshop.exe /Automation</Value></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{b24d3780-2629-4ee6-9f9f-6c0a12554b3a}\LocalServer32</Path></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{b24d3780-2629-4ee6-9f9f-6c0a12554b3a}</Path></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{b24d3780-2629-4ee6-9f9f-6c0a12554b3a}\VersionIndependentProgID</Path><Name>Default</Name><Type>REG_SZ</Type><Value>Photoshop.ActionReference</Value></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{b24d3780-2629-4ee

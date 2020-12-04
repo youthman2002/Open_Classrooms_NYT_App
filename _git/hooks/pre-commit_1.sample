@@ -1,0 +1,52 @@
+copy_db_to(LEX_CSTRING *to)
+  {
+    if (db.str == NULL)
+    {
+      /*
+        No default database is set. In this case if it's guaranteed that
+        no CTE can be used in the statement then we can throw an error right
+        now at the parser stage. Otherwise the decision about throwing such
+        a message must be postponed until a post-parser stage when we are able
+        to resolve all CTE names as we don't need this message to be thrown
+        for any CTE references.
+      */
+      if (!lex->with_clauses_list)
+      {
+        my_message(ER_NO_DB_ERROR, ER(ER_NO_DB_ERROR), MYF(0));
+        return TRUE;
+      }
+      /* This will allow to throw an error later for non-CTE references */
+      to->str= NULL;
+      to->length= 0;
+      return FALSE;
+    }
+
+    to->str= strmake(db.str, db.length);
+    to->length= db.length;
+    return to->str == NULL;                     /* True on error */
+  }
+  /* Get db name or "". Use for printing current db */
+  const char *get_db()
+  { return safe_str(db.str); }
+
+  thd_scheduler event_scheduler;
+
+public:
+  inline Internal_error_handler *get_internal_handler()
+  { return m_internal_handler; }
+
+  /**
+    Add an internal error handler to the thread execution context.
+    @param handler the exception handler to add
+  */
+  void push_internal_handler(Internal_error_handler *handler);
+
+private:
+  /**
+    Handle a sql condition.
+    @param sql_errno the condition error number
+    @param sqlstate the condition sqlstate
+    @param level the condition level
+    @param msg the condition message text
+    @param[out] cond_hdl the sql condition raised, if any
+    @return true if th

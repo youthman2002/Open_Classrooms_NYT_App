@@ -1,0 +1,96 @@
+#endif
+private:
+  /*
+    Only the implementation of the SIGNAL and RESIGNAL statements
+    is permitted to raise SQL conditions in a generic way,
+    or to raise them by bypassing handlers (RESIGNAL).
+    To raise a SQL condition, the code should use the public
+    raise_error() or raise_warning() methods provided by class THD.
+  */
+  friend class Sql_cmd_common_signal;
+  friend class Sql_cmd_signal;
+  friend class Sql_cmd_resignal;
+  friend void push_warning(THD*, Sql_condition::enum_warning_level, uint, const char*);
+  friend void my_message_sql(uint, const char *, myf);
+
+  /**
+    Raise a generic SQL condition.
+    @param sql_errno the condition error number
+    @param sqlstate the condition SQLSTATE
+    @param level the condition level
+    @param msg the condition message text
+    @return The condition raised, or NULL
+  */
+  Sql_condition*
+  raise_condition(uint sql_errno,
+                  const char* sqlstate,
+                  Sql_condition::enum_warning_level level,
+                  const char* msg)
+  {
+    return raise_condition(sql_errno, sqlstate, level,
+                           Sql_user_condition_identity(), msg);
+  }
+
+  /**
+    Raise a generic or a user defined SQL condition.
+    @param ucid      - the user condition identity
+                       (or an empty identity if not a user condition)
+    @param sql_errno - the condition error number
+    @param sqlstate  - the condition SQLSTATE
+    @param level     - the condition level
+    @param msg       - the condition message text
+    @return The condition raised, or NULL
+  */
+  Sql_condition*
+  raise_condition(uint sql_errno,
+                  const char* sqlstate,
+                  Sql_condition::enum_warning_level level,
+                  const Sql_user_condition_identity &ucid,
+                  const char* msg);
+
+  Sql_condition*
+  raise_condition(const Sql_condition *cond)
+  {
+    Sql_condition *raised= raise_condition(cond->get_sql_errno(),
+                                           cond->get_sqlstate(),
+                                           cond->get_level(),
+                                           *cond/*Sql_user_condition_identity*/,
+                                           cond->get_message_text());
+    if (raised)
+      raised->copy_opt_attributes(cond);
+    return raised;
+  }
+
+public:
+  /** Overloaded to guard query/query_length fields */
+  virtual void set_statement(Statement *stmt);
+  void set_command(enum enum_server_command command)
+  {
+    m_command= command;
+#ifdef HAVE_PSI_THREAD_INTERFACE
+    PSI_STATEMENT_CALL(set_thread_command)(m_command);
+#endif
+  }
+  inline enum enum_server_command get_command() const
+  { return m_command; }
+
+  /**
+    Assign a new value to thd->query and thd->query_id and mysys_var.
+    Protected with LOCK_thd_data mutex.
+  */
+  void set_query(char *query_arg, size_t query_length_arg,
+                 CHARSET_INFO *cs_arg)
+  {
+    set_query(CSET_STRING(query_arg, query_length_arg, cs_arg));
+  }
+  void set_query(char *query_arg, size_t query_length_arg) /*Mutex protected*/
+  {
+    set_query(CSET_STRING(query_arg, query_length_arg, charset()));
+  }
+  void set_query(const CSET_STRING &string_arg)
+  {
+    mysql_mutex_lock(&LOCK_thd_data);
+    set_query_inner(string_arg);
+    mysql_mutex_unlock(&LOCK_thd_data);
+
+    PSI_CALL_set_thread_info(query(), quer

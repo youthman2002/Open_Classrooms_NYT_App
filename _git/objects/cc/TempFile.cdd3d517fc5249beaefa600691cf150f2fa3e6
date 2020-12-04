@@ -1,0 +1,32 @@
+
+      <assemblyIdentity name="Microsoft-Windows-IE-ExtensionManager.Resources" version="11.0.18362.1" processorArchitecture="x86" language="en-US" publicKeyToken="31bf3856ad364e35" buildType="release" versionScope="nonSxS" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install">
+      <assemblyIdentity name="Microsoft-Windows-IE-F12Platform2.Resources" version="11.0.18362.1" processorArchitecture="x86" language="tr-TR" publicKeyToken="31bf3856ad364e35" buildType="release" versionScope="nonSxS" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install">
+      <assemblyIdentity name="Microsoft-Windows-IE-F12Script.Resources" version="11.0.18362.1" processorArchitecture="x86" language="tr-TR" publicKeyToken="31bf3856ad364e35" buildType="release" versionScope="nonSxS" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install">
+      <assemblyIdentity name="Microsoft-Windows-IE-Feeds-Platform.Resources" version="11.0.18362.1" processorArchitecture="wow64" language="tr-TR" publicKeyToken="31bf3856ad364e35" buildType="release" versionScope="nonSxS" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install">
+      <assemblyIdentity name="Microsoft-Windows-IE-Feedsbs.Resources" version="11.0.18362.1" processorArchitecture="x86" language="tr-TR" publicKeyToken="31bf3856ad364e35" buildType="release" versionScope="nonSxS" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install">
+      <assemblyIdentity name="Microsoft-Windows-IE-IEChooser.Resources" version="11.0.18362.1" processorArchitecture="x86" language="tr-TR" publicKeyToken="31bf3856ad364e35" buildType="release" versionScope="nonSxS" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install">
+      <assemblyIdentity name="Microsoft-Windows-IE-IExpress.Resources" version="11.0.18362.1" processorArchitecture="x86" language="tr-TR" publicKeyToken="31bf3856ad364e35" buildType="release" versionSc

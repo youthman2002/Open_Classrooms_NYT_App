@@ -1,0 +1,6 @@
+idget" msgid="8273277058724924654">"Pievienot logrīku."</string>
+    <string name="keyguard_accessibility_widget_empty_slot" msgid="1281505703307930757">"Tukšs"</string>
+    <string name="keyguard_accessibility_unlock_area_expanded" msgid="2278106022311170299">"Atbloķēšanas apgabals ir izvērsts."</string>
+    <string name="keyguard_accessibility_unlock_area_collapsed" msgid="6366992066936076396">"Atbloķēšanas apgabals ir sakļauts."</string>
+    <string name="keyguard_accessibility_widget" msgid="6527131039741808240">"Logrīks <xliff:g id="WIDGET_INDEX">%1$s</xliff:g>."</string>
+    <string name="keyguard_accessibility_user_selector" msgid="122679

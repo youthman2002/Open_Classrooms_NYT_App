@@ -1,0 +1,102 @@
+electorView;
+
+    protected int mClientGeneration;
+
+    protected boolean mShowSecurityWhenReturn;
+
+    private final Rect mInsets = new Rect();
+
+    private MyOnClickHandler mOnClickHandler = new MyOnClickHandler(this);
+
+    private Runnable mPostBootCompletedRunnable;
+
+    /*package*/ interface UserSwitcherCallback {
+        void hideSecurityView(int duration);
+        void showSecurityView();
+        void showUnlockHint();
+        void userActivity();
+    }
+
+    interface TransportControlCallback {
+        void userActivity();
+    }
+
+    /*package*/ interface OnDismissAction {
+        /* returns true if the dismiss should be deferred */
+        boolean onDismiss();
+    }
+
+    public KeyguardHostView(Context context) {
+        this(context, null);
+    }
+
+    public KeyguardHostView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+
+        if (DEBUG) Log.e(TAG, "KeyguardHostView()");
+
+        mLockPatternUtils = new LockPatternUtils(context);
+
+        // Note: This depends on KeyguardHostView getting reconstructed every time the
+        // user switches, since mUserId will be used for the entire session.
+        // Once created, keyguard should *never* re-use this instance with another user.
+        // In other words, mUserId should never change - hence it's marked final.
+        mUserId = mLockPatternUtils.getCurrentUser();
+
+        DevicePolicyManager dpm =
+                (DevicePolicyManager) mContext.getSystemService(Context.DEVICE_POLICY_SERVICE);
+        if (dpm != null) {
+            mDisabledFeatures = getDisabledFeatures(dpm);
+            mCameraDisabled = dpm.getCameraDisabled(null);
+        }
+
+        mSafeModeEnabled = LockPatternUtils.isSafeModeEnabled();
+
+        // These need to be created with the user context...
+        Context userContext = null;
+        try {
+            final String packageName = "system";
+            userContext = mContext.createPackageContextAsUser(packageName, 0,
+                    new UserHandle(mUserId));
+
+        } catch (NameNotFoundException e) {
+            e.printStackTrace();
+            // This should never happen, but it's better to have no widgets than to crash.
+            userContext = context;
+        }
+
+        mAppWidgetHost = new AppWidgetHost(userContext, APPWIDGET_HOST_ID, mOnClickHandler,
+                Looper.myLooper());
+
+        mAppWidgetManager = AppWidgetManager.getInstance(userContext);
+
+        mSecurityModel = new KeyguardSecurityModel(context);
+
+        mViewStateManager = new KeyguardViewStateManager(this);
+
+        mUserSetupCompleted = Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                Settings.Secure.USER_SETUP_COMPLETE, 0, UserHandle.USER_CURRENT) != 0;
+
+        // Ensure we have the current state *before* we call showAppropriateWidgetPage()
+        getInitialTransportState();
+
+        if (mSafeModeEnabled) {
+            Log.v(TAG, "Keyguard widgets disabled by safe mode");
+        }
+        if ((mDisabledFeatures & DevicePolicyManager.KEYGUARD_DISABLE_WIDGETS_ALL) != 0) {
+            Log.v(TAG, "Keyguard widgets disabled by DPM");
+        }
+        if ((mDisabledFeatures & DevicePolicyManager.KEYGUARD_DISABLE_SECURE_CAMERA) != 0) {
+            Log.v(TAG, "Keyguard secure camera disabled by DPM");
+        }
+    }
+
+    public void announceCurrentSecurityMethod() {
+        View v = (View) getSecurityView(mCurrentSecuritySelection);
+        if (v != null) {
+            v.announceForAccessibility(v.getContentDescription());
+        }
+    }
+
+    private void getInitialTransportState() {
+        DisplayClientState dcs = Keygua

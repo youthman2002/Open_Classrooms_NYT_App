@@ -1,0 +1,30 @@
+on="2"
+        stCamera:ResidualMeanError="0.000043"
+        stCamera:ResidualStandardDeviation="0.000038"
+        stCamera:RadialDistortParam1="0.00633"
+        stCamera:RadialDistortParam2="-0.021296"
+        stCamera:RadialDistortParam3="0.011229">
+       <stCamera:VignetteModel
+        stCamera:ResidualMeanError="0.001039"
+        stCamera:VignetteModelParam1="-0.574613"
+        stCamera:VignetteModelParam2="0.248251"
+        stCamera:VignetteModelParam3="-0.144402"/>
+       </rdf:Description>
+      </stCamera:PerspectiveModel>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       stCamera:Author="Adobe (www.adobe.com)"
+       stCamera:Make="NIKON CORPORATION"
+       stCamera:CameraRawProfile="True"
+       stCamera:Lens="TAMRON 17-35mm F/2.8-4 Di OSD A037N"
+       stCamera:LensInfo="170/10 350/10 28/10 40/10"
+       stCamera:CameraPrettyName="NIKON CORPORATION"
+       stCamera:LensPrettyName="TAMRON 17-35mm F2.8-4 Di OSD A037N"
+       stCamera:ProfileName="Adobe (TAMRON 17-35mm F2.8-4 Di OSD A037N, NIKON CORPORATION)"
+       stCamera:SensorFormatFactor="1"
+       stCamera:FocalLength="21.422899"
+       stCamera:FocusDistance="1.4"
+       stCamera:ApertureValue="4.643856">
+      <stCamera:PerspectiveMode

@@ -1,0 +1,17 @@
+tCamera:SensorFormatFactor="1"
+       stCamera:FocalLength="28"
+       stCamera:FocusDistance="10000"
+       stCamera:ApertureValue="6">
+      <stCamera:PerspectiveModel>
+       <rdf:Description
+        stCamera:Version="2"
+        stCamera:ResidualMeanError="0.00001"
+        stCamera:ResidualStandardDeviation="0.000006"
+        stCamera:RadialDistortParam1="-0.135931"
+        stCamera:RadialDistortParam2="0.110405"
+        stCamera:RadialDistortParam3="0.008238">
+       <stCamera:VignetteModel
+        stCamera:ResidualMeanError="0.002127"
+        stCamera:VignetteModelParam1="-0.732417"
+        stCamera:VignetteModelParam2="0.528825"
+        stCamera:Vignet

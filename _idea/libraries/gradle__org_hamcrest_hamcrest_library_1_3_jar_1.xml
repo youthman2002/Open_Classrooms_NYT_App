@@ -1,0 +1,7 @@
+th>HKEY_CLASSES_ROOT\Photoshop.RWLFile.140\shell\open\command</Path><Name>Default</Name><Type>REG_SZ</Type><Value>"[INSTALLDIR]\Photoshop.exe" "%1"</Value></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\Photoshop.RWLFile.140\shell\open\command</Path></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\Photoshop.RWLFile.140\shell\open</Path></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\Photoshop.RWLFile.140\shell</Path></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\Photoshop.RWLFile.140</Path></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\Photoshop.RWLFile.140\shell\preview\command</Path><Name>Default</Name><Type>REG_SZ</Type><Value>"[INSTALLDIR]\Photoshop.exe" "%1"</Value></Registry>
+		<Registry><Path>HKEY_CLASSES_ROOT\Photoshop.RWLFile.140\shell\pr
