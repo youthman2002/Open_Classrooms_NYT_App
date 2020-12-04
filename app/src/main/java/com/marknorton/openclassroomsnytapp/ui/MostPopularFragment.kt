@@ -13,6 +13,7 @@ import com.marknorton.openclassroomsnytapp.ArticleModel
 import com.marknorton.openclassroomsnytapp.Database
 import com.marknorton.openclassroomsnytapp.R
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.onComplete
 import org.json.JSONObject
 import java.net.URL
 import java.util.*
@@ -28,58 +29,58 @@ class MostPopularFragment : Fragment() {
         doAsync {
             urls =
                 (URL("https://api.nytimes.com/svc/mostpopular/v2/viewed/30.json?api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
-        }
-        val db = Database(context!!)
-
-        val returnList = ArrayList<ArticleModel>()
-        Thread.sleep(2000)
-        val jsonObject = JSONObject(urls)
-        val jsonObjects = jsonObject.getJSONArray("results")
+            onComplete {
+                val db = Database(context!!)
+                val returnList = ArrayList<ArticleModel>()
+                val jsonObject = JSONObject(urls)
+                val jsonObjects = jsonObject.getJSONArray("results")
 
 
-        var image = ""
-        var url:String
-        var pubDate:String
-        var section:String
-        var theHeadline:String
+                var image = ""
+                var url: String
+                var pubDate: String
+                var section: String
+                var theHeadline: String
 
-        for (i in 0 until jsonObjects.length()) {
-            val c = jsonObjects.getJSONObject(i)
-            section = (c!!.getString("section"))
-            theHeadline = (c.getString("title"))
-            url = (c.getString("url"))
-            pubDate = (c.getString("published_date"))
+                for (i in 0 until jsonObjects.length()) {
+                    val c = jsonObjects.getJSONObject(i)
+                    section = (c!!.getString("section"))
+                    theHeadline = (c.getString("title"))
+                    url = (c.getString("url"))
+                    pubDate = (c.getString("published_date"))
 
 
-            val imageurl = c.getJSONArray("media")
-            for (j in 0 until imageurl.length()) {
-                val e = imageurl.getJSONObject(j)
+                    val imageurl = c.getJSONArray("media")
+                    for (j in 0 until imageurl.length()) {
+                        val e = imageurl.getJSONObject(j)
 
-                val media = e!!.getJSONArray("media-metadata")
+                        val media = e!!.getJSONArray("media-metadata")
 
-                for (k in 0 until media.length()) {
-                    val d = media.getJSONObject(k)
-                    Log.d("Log", "Log-MEDIA-METADATA: $d")
-                    val subtype = d.getString("format")
-                    if (subtype == "Standard Thumbnail") {
-                        image = (d.getString("url"))
+                        for (k in 0 until media.length()) {
+                            val d = media.getJSONObject(k)
+                            Log.d("Log", "Log-MEDIA-METADATA: $d")
+                            val subtype = d.getString("format")
+                            if (subtype == "Standard Thumbnail") {
+                                image = (d.getString("url"))
+                            }
+                        }
                     }
-                }
-          }
 
 
-            db.addHeadline(theHeadline)
+                    db.addHeadline(theHeadline)
 
 
-            returnList.add(ArticleModel(section, image, theHeadline, pubDate, url))
+                    returnList.add(ArticleModel(section, image, theHeadline, pubDate, url))
 //            Log.d("Log", "Log-INFO: $section, $image, $theHeadline, $pubDate")
-            image = ""
+                    image = ""
+                }
+
+
+                val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
+                recyclerview.layoutManager = LinearLayoutManager(activity)
+                recyclerview.adapter = ArticleAdapter(returnList, context!!)
+            }
         }
-
-
-        val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
-        recyclerview.layoutManager = LinearLayoutManager(activity)
-        recyclerview.adapter = ArticleAdapter(returnList, context!!)
         return rootView
         //     }
         //     return rootView
