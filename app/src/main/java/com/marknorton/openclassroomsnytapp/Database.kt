@@ -46,7 +46,6 @@ class Database(context: Context):
         val strSQL =
             "INSERT INTO $TABLE_NAME ($COLUMN_HEADLINE, $COLUMN_VIEWED) VALUES ('$headline', 0)"
         sqLiteDatabase.execSQL(strSQL)
-
     }
     internal fun addViewed(headline:String) {
         // Add the Viewed Headline to the database

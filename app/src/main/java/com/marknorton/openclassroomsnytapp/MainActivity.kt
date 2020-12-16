@@ -34,32 +34,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-//        var db = Database(this, dbName, null, dbVersion)
-
         val adapter = MyPagerAdapter(supportFragmentManager)
         adapter.addFragment(TopStoriesFragment(), "Top Stories")
         adapter.addFragment(MostPopularFragment(), "Most Popular")
         adapter.addFragment(TechnologyFragment(), "Technology")
-//        adapter.addFragment(SearchResultsFragment(), "Search Results")
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
 
         getSharedPreferences("notification", 0)
-
-//        if(notificationPreferences.contains("checked")) {
-
-/*            val searchPreferences = getSharedPreferences("search", 0)
-            val artPreferences = getSharedPreferences("art", 0)
-            val businessPreferences = getSharedPreferences("business", 0)
-            val entrepreneurPreferences = getSharedPreferences("entrepreneur", 0)
-            val politicsPreferences = getSharedPreferences("politics", 0)
-            val sportsPreferences = getSharedPreferences("sports", 0)
-            val travelPreferences = getSharedPreferences("travel", 0)
-*/
-
-            //TODO Set Timer/Alarm  then
-            // Do search Once A Day and make notification
-
             // Creating the pending intent to send to the BroadcastReceiver
             alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
             val intent = Intent(this, MyAlarm::class.java)
@@ -79,7 +61,6 @@ class MainActivity : AppCompatActivity() {
                 AlarmManager.INTERVAL_DAY,
                 pendingIntent
             )
-            Log.d("Log", "Log - ALARM SETUP")
 
         // Create the notification channel.
      createNotificationChannel()
@@ -88,10 +69,8 @@ class MainActivity : AppCompatActivity() {
             mReceiver,
             IntentFilter(ACTION_UPDATE_NOTIFICATION)
         )
-  //      }
     }
     override fun onDestroy() {
-
         unregisterReceiver(mReceiver)
         super.onDestroy()
         // Cancels the pendingIntent if it is no longer needed after this activity is destroyed.
@@ -111,12 +90,9 @@ class MainActivity : AppCompatActivity() {
             R.id.menuHelp -> selectedOption = "help"
             R.id.menuNotification -> selectedOption = "notification"
             R.id.menuSearch -> selectedOption = "search"
-//            R.id.exit -> selectedOption = "exit"
-//            R.id.menuBack -> selectedOption = "back"
         }
         when(selectedOption){
             "about" ->{  val intent = Intent(this, About::class.java)
-                //              intent.putExtra("uid", userUID)
                 startActivity(intent)}
             "help"->{  val intent = Intent(this, Help::class.java)
                 startActivity(intent)}
@@ -128,9 +104,6 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-
-
 
     companion object {
         // Constants for the notification actions buttons.
@@ -147,7 +120,7 @@ class MainActivity : AppCompatActivity() {
         mNotifyManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         // Notification channels are only available in OREO and higher.
-// So, add a check on SDK version.
+        // So, add a check on SDK version.
         if (Build.VERSION.SDK_INT >=
             Build.VERSION_CODES.O
         ) { // Create the NotificationChannel with all the parameters.
@@ -183,5 +156,4 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
-
 }

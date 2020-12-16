@@ -14,7 +14,6 @@ class Notification : AppCompatActivity() {
         setContentView(R.layout.activity_notification)
         val actionbar = supportActionBar
         actionbar?.setDisplayHomeAsUpEnabled(true)
-        actionbar?.setDisplayHomeAsUpEnabled(true)
 
         val searchPreferences = getSharedPreferences("search", 0)
         val artPreferences = getSharedPreferences("art", 0)

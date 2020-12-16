@@ -11,7 +11,6 @@ class Help : AppCompatActivity() {
         setContentView(R.layout.activity_help)
         val actionbar = supportActionBar
         actionbar!!.setDisplayHomeAsUpEnabled(true)
-        actionbar.setDisplayHomeAsUpEnabled(true)
     }
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

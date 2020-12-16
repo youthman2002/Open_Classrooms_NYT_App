@@ -10,18 +10,13 @@ import kotlinx.android.synthetic.main.activity_web_view.*
 
 class WebViewActivity : AppCompatActivity() {
 
-//        var url = intent.getStringExtra("url")
-//    var url = "https://www.google.com"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
         val actionbar = supportActionBar
         actionbar!!.setDisplayHomeAsUpEnabled(true)
-        actionbar.setDisplayHomeAsUpEnabled(true)
 
         val url = intent.getStringExtra("url")
-
         if (url != null) {
             webView.loadUrl(url)
         }

@@ -19,7 +19,6 @@ class SearchResults : AppCompatActivity() {
         setContentView(R.layout.activity_search_results)
         val actionbar = supportActionBar
         actionbar!!.setDisplayHomeAsUpEnabled(true)
-        actionbar.setDisplayHomeAsUpEnabled(true)
 
         val urls = intent.getStringExtra("data")
 

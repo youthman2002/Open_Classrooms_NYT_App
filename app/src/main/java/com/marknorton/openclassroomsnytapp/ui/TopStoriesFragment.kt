@@ -48,7 +48,6 @@ class TopStoriesFragment : Fragment() {
                     url = (c.getString("url"))
                     pubDate = (c.getString("published_date"))
 
-
                     val imageurl = c.getJSONArray("multimedia")
                     for (j in 0 until imageurl.length()) {
                         val d = imageurl.getJSONObject(j)
@@ -65,21 +64,12 @@ class TopStoriesFragment : Fragment() {
                     image = ""
                 }
 
-//        val rootView = inflater.inflate(R.layout.fragment_top_stories, container, false)
                 val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
                 recyclerview.layoutManager = LinearLayoutManager(activity)
                 recyclerview.adapter = ArticleAdapter(returnList, context!!)
             }
         }
             return rootView
-            //     }
-            //     return rootView
         }
 
 }
-
-
-
-
-
-

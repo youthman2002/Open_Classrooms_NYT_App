@@ -22,9 +22,6 @@ import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
  *
  */
 
-//val DB_NAME = "NYTDatabase"
-//private const val DB_VERSION = 1
-
   class ArticleAdapter(private val articleList: ArrayList<ArticleModel>, private val context: Context): RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -47,21 +44,16 @@ import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
             holder.tvHeadline.setTextColor(Color.parseColor("#D81B60"))
         }
 
-
-
         holder.tvSection.text = articleList[position].section
         holder.tvDate.text = articleList[position].date
 
         holder.storyRow.setOnClickListener{
-            //articleList[position].headline
             db.addViewed(articleList[position].headline )
             holder.tvHeadline.setTextColor(Color.parseColor("#000000"))
             val intent = Intent(context, WebViewActivity::class.java)
             intent.putExtra("url", articleList[position].url)
             context.startActivity(intent)
-//            Log.d("Log","Log-ClickedURL:SECTION            "+articleList[position].url)
         }
-
 
         Glide.with(holder.imageView)
             .load(articleList[position].imageURL)
@@ -70,7 +62,6 @@ import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
                 .placeholder(R.drawable.nothumb)
             )
             .into(holder.imageView)
-
     }
 
     override fun getItemCount(): Int {
@@ -83,9 +74,5 @@ import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
         val tvHeadline: TextView = itemView.findViewById(R.id.tvHeadline)
         val tvDate: TextView = itemView.findViewById(R.id.tvDate)
         val storyRow: CardView = itemView.findViewById(R.id.storyRow)
-
-//        var myAdapter = ArticleAdapter(ArticleAdapter)
-
-
     }
 }

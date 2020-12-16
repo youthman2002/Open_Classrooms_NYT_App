@@ -1,6 +1,0 @@
-19}\TypeLib</Path></Registry>
-		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{5f8f79cf-3f58-4663-8f7d-efc3240f7e19}</Path></Registry>
-		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{5f8f79cf-3f58-4663-8f7d-efc3240f7e19}\LocalServer32</Path><Name>Default</Name><Type>REG_SZ</Type><Value>[INSTALLDIR]\Photoshop.exe /Automation</Value></Registry>
-		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{5f8f79cf-3f58-4663-8f7d-efc3240f7e19}\LocalServer32</Path></Registry>
-		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{5f8f79cf-3f58-4663-8f7d-efc3240f7e19}</Path></Registry>
-		<Registry><Path>HKEY_CLASSES_ROOT\CLSID\{5f8f79cf-3f58-4663-8f7d-efc3240f7e19}\VersionIndependentProgID</Path><Nam

@@ -68,7 +68,6 @@ import java.util.*
                     image = ""
                 }
 
-
                 val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
                 recyclerview.layoutManager = LinearLayoutManager(context)
                 recyclerview.adapter = ArticleAdapter(returnList, context!!)

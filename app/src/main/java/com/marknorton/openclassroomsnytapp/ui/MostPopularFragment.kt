@@ -35,7 +35,6 @@ class MostPopularFragment : Fragment() {
                 val jsonObject = JSONObject(urls)
                 val jsonObjects = jsonObject.getJSONArray("results")
 
-
                 var image = ""
                 var url: String
                 var pubDate: String
@@ -48,7 +47,6 @@ class MostPopularFragment : Fragment() {
                     theHeadline = (c.getString("title"))
                     url = (c.getString("url"))
                     pubDate = (c.getString("published_date"))
-
 
                     val imageurl = c.getJSONArray("media")
                     for (j in 0 until imageurl.length()) {
@@ -65,13 +63,8 @@ class MostPopularFragment : Fragment() {
                             }
                         }
                     }
-
-
                     db.addHeadline(theHeadline)
-
-
                     returnList.add(ArticleModel(section, image, theHeadline, pubDate, url))
-//            Log.d("Log", "Log-INFO: $section, $image, $theHeadline, $pubDate")
                     image = ""
                 }
 
@@ -82,8 +75,6 @@ class MostPopularFragment : Fragment() {
             }
         }
         return rootView
-        //     }
-        //     return rootView
     }
 
 }

@@ -27,11 +27,6 @@ class MyAlarm (val applicationContext: Context) : BroadcastReceiver() {
     private var mNotifyManager: NotificationManager? = null
     override fun onReceive(context: Context, intent: Intent) {
         //Plays when alarm is fired  SET NOTIFICATION HERE
-        Log.d("Log", "ALARM Triggered")
-//        val mediaPlayer =
-//            MediaPlayer.create(context, Settings.System.DEFAULT_RINGTONE_URI)
-//        mediaPlayer.start()
-
         //Runs Search when Time Notification is triggered
 
         createNotificationChannel()
@@ -44,14 +39,13 @@ class MyAlarm (val applicationContext: Context) : BroadcastReceiver() {
         mNotifyManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         // Notification channels are only available in OREO and higher.
-// So, add a check on SDK version.
+        // So, add a check on SDK version.
         if (Build.VERSION.SDK_INT >=
             Build.VERSION_CODES.O
         ) { // Create the NotificationChannel with all the parameters.
             val notificationChannel = NotificationChannel(
                 PRIMARY_CHANNEL_ID,
                 context.getString(R.string.notification_channel_name),
-//                Resources.getSystem().getString(android.R.string.notification_channel_name),
                 NotificationManager.IMPORTANCE_HIGH
             )
             notificationChannel.enableLights(true)
@@ -67,7 +61,8 @@ class MyAlarm (val applicationContext: Context) : BroadcastReceiver() {
     private fun sendNotification() { // Sets up the pending intent to update the notification.
 // Corresponds to a press of the Update Me! button.
         val updateIntent = Intent(ACTION_UPDATE_NOTIFICATION)
-        val updatePendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, updateIntent, PendingIntent.FLAG_ONE_SHOT
+        val updatePendingIntent = PendingIntent.getBroadcast(
+            context, NOTIFICATION_ID, updateIntent, PendingIntent.FLAG_ONE_SHOT
         )
         // Build the notification with all of the parameters using helper
 // method.
@@ -79,8 +74,8 @@ class MyAlarm (val applicationContext: Context) : BroadcastReceiver() {
         )
         // Deliver the notification.
         mNotifyManager!!.notify(NOTIFICATION_ID, notifyBuilder.build())
-    }// Set up the pending intent that is delivered when the notification
-// is clicked.
+    }  // Set up the pending intent that is delivered when the notification
+    // is clicked.
     // Build the notification with all of the parameters.
 
     /**
@@ -105,8 +100,6 @@ class MyAlarm (val applicationContext: Context) : BroadcastReceiver() {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
         }
-
-
 
 
 
