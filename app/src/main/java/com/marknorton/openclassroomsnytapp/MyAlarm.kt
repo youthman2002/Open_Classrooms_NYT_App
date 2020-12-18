@@ -17,12 +17,11 @@ import androidx.core.app.NotificationCompat
  *  Created by Mark Norton on 12/17/2019.
  *
  */
-class MyAlarm (val applicationContext: Context) : BroadcastReceiver() {
+class MyAlarm : BroadcastReceiver() {
     init {
         instance = this
     }
 
-    //    val context: Context = applicationContext()
     val context: Context = applicationContext()
     private var mNotifyManager: NotificationManager? = null
     override fun onReceive(context: Context, intent: Intent) {
@@ -140,7 +139,7 @@ class MyAlarm (val applicationContext: Context) : BroadcastReceiver() {
 
         private var instance: MyAlarm? = null
         fun applicationContext() : Context {
-            return instance!!.applicationContext
+            return instance!!.context
         }
     }
 }
