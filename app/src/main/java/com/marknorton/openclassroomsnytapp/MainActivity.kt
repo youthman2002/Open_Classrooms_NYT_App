@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+
+        // Set up bottom navigation bar
         val adapter = MyPagerAdapter(supportFragmentManager)
         adapter.addFragment(TopStoriesFragment(), "Top Stories")
         adapter.addFragment(MostPopularFragment(), "Most Popular")
@@ -41,26 +43,28 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
 
+        // Set up notifications
         getSharedPreferences("notification", 0)
-            // Creating the pending intent to send to the BroadcastReceiver
-            alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            val intent = Intent(this, MyAlarm::class.java)
-            pendingIntent = PendingIntent.getBroadcast(this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        // Creating the pending intent to send to the BroadcastReceiver
+        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, MyAlarm::class.java)
+        pendingIntent =
+            PendingIntent.getBroadcast(this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
-            // Setting the specific time for the alarm manager to trigger the intent, in this example, the alarm is set to go off at 23:30, update the time according to your need
-            val calendar = Calendar.getInstance()
-            calendar.timeInMillis = System.currentTimeMillis()
-            calendar.set(Calendar.HOUR_OF_DAY, 2)
-            calendar.set(Calendar.MINUTE, 51)
-            calendar.set(Calendar.SECOND, 0)
+        // Setting the specific time for the alarm manager to trigger the intent, in this example, the alarm is set to go off at 23:30, update the time according to your need
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = System.currentTimeMillis()
+        calendar.set(Calendar.HOUR_OF_DAY, 12)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
 
-            // Starts the alarm manager
-            alarmManager.setRepeating(
-                AlarmManager.RTC,
-                calendar.timeInMillis,
-                AlarmManager.INTERVAL_DAY,
-                pendingIntent
-            )
+        // Starts the alarm manager
+        alarmManager.setRepeating(
+            AlarmManager.RTC,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
+            pendingIntent
+        )
 
         // Create the notification channel.
      createNotificationChannel()
@@ -136,21 +140,19 @@ class MainActivity : AppCompatActivity() {
             mNotifyManager!!.createNotificationChannel(notificationChannel)
         }
     }
-    /**
+
+    /*
      * The broadcast receiver class for notifications.
      * Responds to the update notification pending intent action.
      */
     inner class NotificationReceiver : BroadcastReceiver() {
-        /**
+        /*
          * Receives the incoming broadcasts and responds accordingly.
-         *
-         * @param context Context of the app when the broadcast is received.
-         * @param intent The broadcast intent containing the action.
-         */
+        */
         override fun onReceive(
             context: Context,
             intent: Intent
-        ) { // Update the notification.
+        ) {
             Log.d(
                 "Log", "Log-Notification Clicked"
             )
