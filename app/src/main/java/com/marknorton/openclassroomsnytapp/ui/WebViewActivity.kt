@@ -18,6 +18,7 @@ class WebViewActivity : AppCompatActivity() {
 
         val url = intent.getStringExtra("url")
         if (url != null) {
+            // Load the Article in a Webview
             webView.loadUrl(url)
         }
     }

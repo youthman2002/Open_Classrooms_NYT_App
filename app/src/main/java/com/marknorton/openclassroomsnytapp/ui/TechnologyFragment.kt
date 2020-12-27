@@ -5,8 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,6 +30,7 @@ class TechnologyFragment : Fragment() {
             urls =
                 (URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:(\"Technology\")&q=Science&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
             onComplete {
+                // After loading the Technology Articles, process the data
                 val returnList = ArrayList<ArticleModel>()
                 var jsonObject: JSONObject? = JSONObject(urls)
                 jsonObject = jsonObject?.getJSONObject("response")
@@ -63,10 +62,8 @@ class TechnologyFragment : Fragment() {
                     url = (c.getString("web_url"))
 
                     returnList.add(ArticleModel(section, image, theHeadline, pubDate, url))
-//            Log.d("Log", "Log-INFO: $section, $image, $theHeadline, $pubDate, $url")
                     image = ""
                 }
-
 
                 val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
                 recyclerview.layoutManager = LinearLayoutManager(context)
@@ -75,6 +72,4 @@ class TechnologyFragment : Fragment() {
         }
         return rootView
     }
-
-
 }

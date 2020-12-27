@@ -1,7 +1,6 @@
 package com.marknorton.openclassroomsnytapp.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +29,8 @@ class TopStoriesFragment : Fragment() {
             urls =
                 (URL("https://api.nytimes.com/svc/topstories/v2/science.json?api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
             onComplete {
+                // After loading the JSON URL, process the results
+
                 val db = Database(context!!)
                 val returnList = ArrayList<ArticleModel>()
                 val jsonObject = JSONObject(urls)
@@ -60,7 +61,6 @@ class TopStoriesFragment : Fragment() {
                     db.addHeadline(theHeadline)
 
                     returnList.add(ArticleModel(section, image, theHeadline, pubDate, url))
-                    Log.d("Log", "Log-INFO: $section, $image, $theHeadline, $pubDate")
                     image = ""
                 }
 

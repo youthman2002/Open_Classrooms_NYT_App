@@ -1,6 +1,5 @@
 package com.marknorton.openclassroomsnytapp
 
-// import com.bumptech.glide.Glide
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
@@ -36,6 +35,7 @@ import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
         // Populate the data into the List to send to History Info
         val viewed=result.getString(2)
 
+        // If the headline has been viewed, change the color to black
         if (viewed == "1") {
             holder.tvHeadline.text = articleList[position].headline
                 holder.tvHeadline.setTextColor(Color.parseColor("#000000"))
@@ -47,8 +47,11 @@ import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
         holder.tvSection.text = articleList[position].section
         holder.tvDate.text = articleList[position].date
 
+        // Set the onClickListener to take the article to the webview
         holder.storyRow.setOnClickListener{
+            // Add the headline to the SQLite database
             db.addViewed(articleList[position].headline )
+            // Change the color to show the article has been viewed
             holder.tvHeadline.setTextColor(Color.parseColor("#000000"))
             val intent = Intent(context, WebViewActivity::class.java)
             intent.putExtra("url", articleList[position].url)

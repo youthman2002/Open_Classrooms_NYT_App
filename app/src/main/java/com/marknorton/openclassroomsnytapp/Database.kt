@@ -56,7 +56,7 @@ class Database(context: Context):
     }
     @SuppressLint("Recycle")
     internal fun getHeadline(headline:String):Cursor {
-        // Get the day's mood from the database
+        // Get the headline from the database
         val sqLiteDatabase = this.writableDatabase
         return (sqLiteDatabase.rawQuery("SELECT * FROM $TABLE_NAME WHERE $COLUMN_HEADLINE = '$headline'", null))
     }
