@@ -28,7 +28,7 @@ class MyAlarm : BroadcastReceiver() {
         //Plays when alarm is fired  SET NOTIFICATION HERE
         //Runs Search when Time Notification is triggered
 
-//        createNotificationChannel()
+        createNotificationChannel()
 //        sendNotification()
     }
 

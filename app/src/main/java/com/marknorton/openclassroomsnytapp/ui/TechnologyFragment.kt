@@ -36,6 +36,7 @@ class TechnologyFragment : Fragment() {
                 var jsonObject: JSONObject? = JSONObject(urls)
                 jsonObject = jsonObject?.getJSONObject("response")
                 val jsonObjects = (jsonObject?.getJSONArray("docs"))
+                Log.d("Log", "Log - jsonObjects - " + jsonObjects.toString())
                 var image = ""
                 var url: String
                 var pubDate: String
@@ -46,9 +47,7 @@ class TechnologyFragment : Fragment() {
                     val c = jsonObjects.getJSONObject(i)
 
                     section = (c.getString("section_name"))
-
                     val imageurl = c.getJSONArray("multimedia")
-                    Log.d("Log", "Log - imageurlJSON - " + imageurl.toString())
                     for (j in 0 until imageurl.length()) {
                         val d = imageurl.getJSONObject(j)
                         val subtype = d.getString("subtype")
