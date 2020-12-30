@@ -38,14 +38,10 @@ class Notification : AppCompatActivity() {
         notificationSwitch.isChecked = notificationPreferences.contains("checked") && notificationPreferences.getBoolean("checked",false)
 
         etSearch.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {
-//                Toast.makeText(applicationContext, "ATC Text=$etSearch", Toast.LENGTH_LONG).show()
-//                searchPreferences.edit().putString("search", etSearch.text.toString()).apply()
-            }
+            override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                val mySearches=etSearch.text.toString()
-//                Toast.makeText(applicationContext, "OTC Text=$mySearch", Toast.LENGTH_SHORT).show()
+                val mySearches = etSearch.text.toString()
                 searchPreferences.edit().putString("search", mySearches).apply()
             }
         })
@@ -115,7 +111,5 @@ class Notification : AppCompatActivity() {
         onBackPressed()
         return true
     }
-
-
 
 }

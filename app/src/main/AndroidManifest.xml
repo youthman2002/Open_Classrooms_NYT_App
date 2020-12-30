@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SearchResults"></activity>
+        <activity android:name=".ui.AlarmDisplay"></activity>
+        <activity android:name=".ui.SearchResults" />
         <activity android:name=".ui.SearchArticles" />
         <activity android:name=".ui.SearchActivity" />
         <activity android:name=".ui.Notification" />
@@ -28,7 +29,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".MyAlarm"/>
+
+        <receiver android:name=".ui.MyAlarm" />
     </application>
 
 </manifest>

@@ -56,7 +56,6 @@ class MostPopularFragment : Fragment() {
 
                         for (k in 0 until media.length()) {
                             val d = media.getJSONObject(k)
-                            Log.d("Log", "Log-MEDIA-METADATA: $d")
                             val subtype = d.getString("format")
                             if (subtype == "Standard Thumbnail") {
                                 image = (d.getString("url"))

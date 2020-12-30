@@ -1,15 +1,9 @@
 package com.marknorton.openclassroomsnytapp
 
+
 import android.app.AlarmManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.app.PendingIntent
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -19,21 +13,16 @@ import com.marknorton.openclassroomsnytapp.ui.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
-// private var mNotifyManager: NotificationManager? = null
-//  private val mReceiver = MyAlarm.NotificationReceiver()
 
 class MainActivity : AppCompatActivity() {
-    private val requestCode = 100
     private lateinit var alarmManager: AlarmManager
     private lateinit var pendingIntent: PendingIntent
-    private var mNotifyManager: NotificationManager? = null
-    private val mReceiver = NotificationReceiver()
+//    private val mReceiver = MyAlarm()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
 
         // Set up bottom navigation bar
         val adapter = MyPagerAdapter(supportFragmentManager)
@@ -44,38 +33,39 @@ class MainActivity : AppCompatActivity() {
         tabs.setupWithViewPager(viewPager)
 
         // Set up notifications
-        getSharedPreferences("notification", 0)
-        // Creating the pending intent to send to the BroadcastReceiver
-        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(this, MyAlarm::class.java)
-        pendingIntent =
-            PendingIntent.getBroadcast(this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+//        getSharedPreferences("notification", 0)
 
-        // Setting the specific time for the alarm manager to trigger the intent, in this example, the alarm is set to go off at 23:30, update the time according to your need
+        startAlertAtParticularTime()
+
+    }
+
+    private fun startAlertAtParticularTime() {
+        val myIntent = Intent(this, MyAlarm::class.java)
+        val categories = "Health"
+        val startDate = "2020-01-01"
+        val endDate = "2020-12-12"
+        val searchString = "Covid"
+        val urls =
+            "https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:($categories)&q=$searchString&facet_field=day_of_week&facet=true&begin_date=$startDate&end_date=$endDate&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd"
+        myIntent.putExtra("data", urls)
+        pendingIntent = PendingIntent.getBroadcast(
+            this.applicationContext, 280192, myIntent, PendingIntent.FLAG_CANCEL_CURRENT
+        )
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
-        calendar.set(Calendar.HOUR_OF_DAY, 12)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-
-        // Starts the alarm manager
-        alarmManager.setRepeating(
-            AlarmManager.RTC,
-            calendar.timeInMillis,
-            AlarmManager.INTERVAL_DAY,
-            pendingIntent
+        calendar[Calendar.HOUR_OF_DAY] = 8
+        calendar[Calendar.MINUTE] = 40
+        alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+        alarmManager.setInexactRepeating(
+            AlarmManager.RTC_WAKEUP, calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY, pendingIntent
         )
+        Log.d("Log", "Log ------------------- Main - Alarm Set 08:40")
 
-        // Create the notification channel.
-     createNotificationChannel()
-        // Register the broadcast receiver to receive the update action from the notification.
-        registerReceiver(
-            mReceiver,
-            IntentFilter(ACTION_UPDATE_NOTIFICATION)
-        )
     }
+
     override fun onDestroy() {
-        unregisterReceiver(mReceiver)
+        //       unregisterReceiver(mReceiver)
         super.onDestroy()
         // Cancels the pendingIntent if it is no longer needed after this activity is destroyed.
         alarmManager.cancel(pendingIntent)
@@ -107,55 +97,5 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)}
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    companion object {
-        // Constants for the notification actions buttons.
-        const val ACTION_UPDATE_NOTIFICATION =
-            "com.marknorton.openclassroomsnytapp.ACTION_UPDATE_NOTIFICATION"
-        // Notification channel ID.
-        const val PRIMARY_CHANNEL_ID = "primary_notification_channel"
-    }
-
-    /**
-     * Creates a Notification channel, for OREO and higher.
-     */
-    private fun createNotificationChannel() { // Create a notification manager object.
-        mNotifyManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        // Notification channels are only available in OREO and higher.
-        // So, add a check on SDK version.
-        if (Build.VERSION.SDK_INT >=
-            Build.VERSION_CODES.O
-        ) { // Create the NotificationChannel with all the parameters.
-            val notificationChannel = NotificationChannel(
-                PRIMARY_CHANNEL_ID,
-                getString(R.string.notification_channel_name),
-                NotificationManager.IMPORTANCE_HIGH
-            )
-            notificationChannel.enableLights(true)
-            notificationChannel.lightColor = Color.RED
-            notificationChannel.enableVibration(true)
-            notificationChannel.description = getString(R.string.notification_channel_description)
-            mNotifyManager!!.createNotificationChannel(notificationChannel)
-        }
-    }
-
-    /*
-     * The broadcast receiver class for notifications.
-     * Responds to the update notification pending intent action.
-     */
-    inner class NotificationReceiver : BroadcastReceiver() {
-        /*
-         * Receives the incoming broadcasts and responds accordingly.
-        */
-        override fun onReceive(
-            context: Context,
-            intent: Intent
-        ) {
-            Log.d(
-                "Log", "Log-Notification Clicked"
-            )
-        }
     }
 }

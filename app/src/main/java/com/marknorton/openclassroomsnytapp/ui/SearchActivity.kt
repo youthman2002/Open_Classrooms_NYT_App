@@ -28,7 +28,7 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search)
         val categories = intent.getStringExtra("Categories")
 
-        Log.d("Log", "Log-CATEGORIES: $categories")
+//        Log.d("Log", "Log-CATEGORIES: $categories")
         doAsync {
             urls =
                 (URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:($categories)&q=Science&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
