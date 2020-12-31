@@ -10,10 +10,12 @@
         android:id="@+id/etSearch"
         android:layout_width="346dp"
         android:layout_height="43dp"
+        android:autofillHints="@string/etSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/etSearch" />
+        android:hint="@string/etSearch"
+        android:inputType="text" />
 
     <CheckBox
         android:id="@+id/cbArt"
@@ -75,7 +77,7 @@
         app:layout_constraintStart_toEndOf="@+id/cbEntrepreneurs"
         app:layout_constraintTop_toBottomOf="@+id/cbSports" />
 
-    <Switch
+    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/notificationSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

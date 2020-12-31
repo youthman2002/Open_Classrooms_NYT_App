@@ -12,11 +12,13 @@
         android:layout_width="346dp"
         android:layout_height="43dp"
         android:layout_marginTop="16dp"
+        android:autofillHints="@string/etSearch"
+        android:hint="@string/etSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/etSearch" />
+        android:inputType="text" />
 
     <Spinner
         android:id="@+id/spStartDate"

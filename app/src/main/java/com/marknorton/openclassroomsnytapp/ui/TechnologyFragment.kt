@@ -18,7 +18,7 @@ import java.net.URL
 import java.util.*
 
 class TechnologyFragment : Fragment() {
-    var urls = ""
+    private var urls = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,

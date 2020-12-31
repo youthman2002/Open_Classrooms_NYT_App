@@ -6,20 +6,12 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.database.Cursor
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
-import android.util.Log
-import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.ContextCompat.startActivity
-import com.marknorton.openclassroomsnytapp.Database
 import com.marknorton.openclassroomsnytapp.R
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.onComplete
-import org.json.JSONObject
 import java.net.URL
 
 class MyAlarm : BroadcastReceiver() {
@@ -38,13 +30,12 @@ class MyAlarm : BroadcastReceiver() {
             val data = (URL(urls).readText())
             onComplete {
 
-                lateinit var notificationManager: NotificationManager
                 lateinit var notificationChannel: NotificationChannel
                 lateinit var builder: NotificationCompat.Builder
                 val channelId = "NYT Alarm"
                 val description = "You have unseen articles that match your search."
 
-                notificationManager =
+                val notificationManager: NotificationManager =
                     context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                 val intents = Intent(context, SearchResults::class.java)
                 intents.putExtra("data", data)
