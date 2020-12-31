@@ -23,7 +23,7 @@ class SearchResults : AppCompatActivity() {
         val urls = intent.getStringExtra("data")
 
         Log.d("Log", "Log --------------- In Search Results!!!")
-        Log.d("Log", "Log --------------- urlsData=$urls")
+//        Log.d("Log", "Log --------------- urlsData=$urls")
 
         //getting recyclerview from xml
         val recyclerView = findViewById<RecyclerView>(R.id.rvSearchResults2)

@@ -24,13 +24,16 @@ class Notification : AppCompatActivity() {
         val travelPreferences = getSharedPreferences("travel", 0)
         val notificationPreferences = getSharedPreferences("notification", 0)
 
-
         val mySearch = searchPreferences.getString("search","Enter Search Term")
         etSearch.setText(mySearch)
 
         cbArt.isChecked =
-            artPreferences.contains("checked") && artPreferences.getBoolean("checked",false)
-        cbBusiness.isChecked = businessPreferences.contains("checked") && businessPreferences.getBoolean("checked",false)
+            artPreferences.contains("checked") && artPreferences.getBoolean("checked", false)
+        cbBusiness.isChecked =
+            businessPreferences.contains("checked") && businessPreferences.getBoolean(
+                "checked",
+                false
+            )
         cbEntrepreneurs.isChecked = entrepreneurPreferences.contains("checked") && entrepreneurPreferences.getBoolean("checked",false)
         cbPolitics.isChecked = politicsPreferences.contains("checked") && politicsPreferences.getBoolean("checked",false)
         cbSports.isChecked = sportsPreferences.contains("checked") && sportsPreferences.getBoolean("checked",false)
@@ -48,60 +51,60 @@ class Notification : AppCompatActivity() {
 
         cbArt.setOnCheckedChangeListener { _, _ ->
             if (cbArt.isChecked) {
-                artPreferences.edit().putBoolean("checked", true).apply()
+                artPreferences.edit().putBoolean("art", true).apply()
             } else {
-                artPreferences.edit().putBoolean("checked", false).apply()
+                artPreferences.edit().putBoolean("art", false).apply()
             }
         }
         cbBusiness.setOnCheckedChangeListener { _, _ ->
             if (cbBusiness.isChecked) {
-                businessPreferences.edit().putBoolean("checked", true).apply()
+                businessPreferences.edit().putBoolean("business", true).apply()
             } else {
-                businessPreferences.edit().putBoolean("checked", false).apply()
+                businessPreferences.edit().putBoolean("business", false).apply()
             }
         }
         cbEntrepreneurs.setOnCheckedChangeListener { _, _ ->
             if (cbEntrepreneurs.isChecked) {
-                entrepreneurPreferences.edit().putBoolean("checked", true).apply()
+                entrepreneurPreferences.edit().putBoolean("entrepreneur", true).apply()
             } else {
-                entrepreneurPreferences.edit().putBoolean("checked", false).apply()
+                entrepreneurPreferences.edit().putBoolean("entrepreneur", false).apply()
             }
         }
         cbPolitics.setOnCheckedChangeListener { _, _ ->
             if (cbPolitics.isChecked) {
-                politicsPreferences.edit().putBoolean("checked", true).apply()
+                politicsPreferences.edit().putBoolean("politics", true).apply()
             } else {
-                politicsPreferences.edit().putBoolean("checked", false).apply()
+                politicsPreferences.edit().putBoolean("politics", false).apply()
             }
         }
         cbSports.setOnCheckedChangeListener { _, _ ->
             if (cbSports.isChecked) {
-                sportsPreferences.edit().putBoolean("checked", true).apply()
+                sportsPreferences.edit().putBoolean("sports", true).apply()
             } else {
-                sportsPreferences.edit().putBoolean("checked", false).apply()
+                sportsPreferences.edit().putBoolean("sports", false).apply()
             }
         }
         cbTravel.setOnCheckedChangeListener { _, _ ->
             if (cbTravel.isChecked) {
-                travelPreferences.edit().putBoolean("checked", true).apply()
+                travelPreferences.edit().putBoolean("travel", true).apply()
             } else {
-                travelPreferences.edit().putBoolean("checked", false).apply()
+                travelPreferences.edit().putBoolean("travel", false).apply()
             }
         }
         notificationSwitch.setOnCheckedChangeListener { _, _ ->
             if (notificationSwitch.isChecked) {
-                notificationPreferences.edit().putBoolean("checked", true).apply()
+                notificationPreferences.edit().putBoolean("notification", true).apply()
                 if ((!cbArt.isChecked) && (!cbBusiness.isChecked) && (!cbEntrepreneurs.isChecked) && (!cbPolitics.isChecked) && (!cbSports.isChecked) && (!cbTravel.isChecked) || (etSearch.text.isEmpty())) {
                     Toast.makeText(
                         this@Notification,
                         "You MUST choose at least 1 Category and Search Term",
                         Toast.LENGTH_LONG
                     ).show()
-                    notificationPreferences.edit().putBoolean("checked", false).apply()
+                    notificationPreferences.edit().putBoolean("notification", false).apply()
                     notificationSwitch.isChecked = false
                 }
             } else {
-                notificationPreferences.edit().putBoolean("checked", false).apply()
+                notificationPreferences.edit().putBoolean("notification", false).apply()
             }
         }
 
