@@ -14,7 +14,7 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.onComplete
 import java.net.URL
 
-class MyAlarm : BroadcastReceiver() {
+class NotificationAlarm : BroadcastReceiver() {
     init {
         instance = this
     }
@@ -32,8 +32,8 @@ class MyAlarm : BroadcastReceiver() {
 
                 lateinit var notificationChannel: NotificationChannel
                 lateinit var builder: NotificationCompat.Builder
-                val channelId = "NYT Alarm"
-                val description = "You have unseen articles that match your search."
+                val channelId = context.resources.getString(R.string.channelId)
+                val description = context.resources.getString(R.string.channelDescription)
 
                 val notificationManager: NotificationManager =
                     context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -71,7 +71,7 @@ class MyAlarm : BroadcastReceiver() {
     }
 
     companion object {
-        private var instance: MyAlarm? = null
+        private var instance: NotificationAlarm? = null
         fun applicationContext(): Context {
             return instance!!.context
         }

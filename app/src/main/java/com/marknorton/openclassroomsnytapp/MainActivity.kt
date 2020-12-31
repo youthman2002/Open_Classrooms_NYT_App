@@ -1,12 +1,9 @@
 package com.marknorton.openclassroomsnytapp
 
-
-import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var alarmManager: AlarmManager
@@ -40,10 +36,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
+
     private fun startAlertAtParticularTime() {
         var categories = ""
-        val myIntent = Intent(this, MyAlarm::class.java)
+        val myIntent = Intent(this, NotificationAlarm::class.java)
         val artPreferences = getSharedPreferences("art", 0)
         val businessPreferences = getSharedPreferences("business", 0)
         val entrepreneurPreferences = getSharedPreferences("entrepreneur", 0)
@@ -60,10 +56,6 @@ class MainActivity : AppCompatActivity() {
         val travelPreference = travelPreferences.getBoolean("travel", false)
         val searchString = searchStrings.getString("search", "")
 
-        Log.d(
-            "Log",
-            "Log - art=$artPreference - business=$businessPreference - entrepreneur=$entrepreneurPreference - politics=$politicsPreference - sports=$sportsPreference - travel=$travelPreference"
-        )
         if (artPreference) {
             categories = "\"Art\" $categories"
         }
@@ -83,11 +75,10 @@ class MainActivity : AppCompatActivity() {
             categories = "\"Travel\" $categories"
         }
 
-        val sdf: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val sdf: DateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
         val cal = Calendar.getInstance()
         cal.add(Calendar.DATE, -1)
         val startDate = sdf.format(cal.time)
-
         val endDate = sdf.format(Date())
 
         val urls =
@@ -98,14 +89,13 @@ class MainActivity : AppCompatActivity() {
         )
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
-        calendar[Calendar.HOUR_OF_DAY] = 7
-        calendar[Calendar.MINUTE] = 12
+        calendar[Calendar.HOUR_OF_DAY] = 12
+        calendar[Calendar.MINUTE] = 0
         alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         alarmManager.setInexactRepeating(
             AlarmManager.RTC_WAKEUP, calendar.timeInMillis,
             AlarmManager.INTERVAL_DAY, pendingIntent
         )
-        Log.d("Log", "Log ------------------- Main - Alarm Set 07:12")
 
     }
 

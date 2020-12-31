@@ -35,5 +35,8 @@
     <string name="update">Click To View Article</string>
     <string name="notification_title">NYT Article Notification</string>
     <string name="notification_text">You have an article to read that matches your notification settings!</string>
+    <string name="channelId">NYT Alarm</string>
+    <string name="channelDescription">You have unseen articles that match your search.</string>
     <string name="ivDescription">Image View</string>
+
 </resources>

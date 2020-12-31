@@ -1,7 +1,6 @@
 package com.marknorton.openclassroomsnytapp.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,9 +20,6 @@ class SearchResults : AppCompatActivity() {
         val actionbar = supportActionBar
         actionbar!!.setDisplayHomeAsUpEnabled(true)
         val urls = intent.getStringExtra("data")
-
-        Log.d("Log", "Log --------------- In Search Results!!!")
-//        Log.d("Log", "Log --------------- urlsData=$urls")
 
         //getting recyclerview from xml
         val recyclerView = findViewById<RecyclerView>(R.id.rvSearchResults2)
