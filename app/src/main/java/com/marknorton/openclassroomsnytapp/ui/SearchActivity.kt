@@ -95,14 +95,19 @@ class SearchActivity : AppCompatActivity() {
             "about" ->{  val intent = Intent(this, About::class.java)
                 //              intent.putExtra("uid", userUID)
                 startActivity(intent)}
-            "help"->{  val intent = Intent(this, Help::class.java)
-                startActivity(intent)}
-            "notification" ->{val intent = Intent(this, Notification::class.java)
-                startActivity(intent)}
-            "search" ->{
+            "help" -> {
+                val intent = Intent(this, Help::class.java)
+                startActivity(intent)
+            }
+            "notification" -> {
+                val intent = Intent(this, NotificationOptions::class.java)
+                startActivity(intent)
+            }
+            "search" -> {
                 showDialog()
             }
-            "back" ->{this.onBackPressed()
+            "back" -> {
+                this.onBackPressed()
                 return true
             }
         }

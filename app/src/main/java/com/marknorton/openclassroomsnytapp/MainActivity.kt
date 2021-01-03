@@ -87,13 +87,12 @@ class MainActivity : AppCompatActivity() {
         pendingIntent = PendingIntent.getBroadcast(
             this.applicationContext, 280192, myIntent, PendingIntent.FLAG_CANCEL_CURRENT
         )
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = System.currentTimeMillis()
-        calendar[Calendar.HOUR_OF_DAY] = 12
-        calendar[Calendar.MINUTE] = 0
+        cal.timeInMillis = System.currentTimeMillis()
+        cal[Calendar.HOUR_OF_DAY] = 12
+        cal[Calendar.MINUTE] = 0
         alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         alarmManager.setInexactRepeating(
-            AlarmManager.RTC_WAKEUP, calendar.timeInMillis,
+            AlarmManager.RTC_WAKEUP, cal.timeInMillis,
             AlarmManager.INTERVAL_DAY, pendingIntent
         )
 
@@ -130,7 +129,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             "notification" -> {
-                val intent = Intent(this, Notification::class.java)
+                val intent = Intent(this, NotificationOptions::class.java)
                 startActivity(intent)
             }
             "search" -> {

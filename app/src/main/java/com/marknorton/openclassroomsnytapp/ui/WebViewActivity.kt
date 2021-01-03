@@ -41,14 +41,20 @@ class WebViewActivity : AppCompatActivity() {
             "about" ->{  val intent = Intent(this, About::class.java)
                 //              intent.putExtra("uid", userUID)
                 startActivity(intent)}
-            "help"->{  val intent = Intent(this, Help::class.java)
-                startActivity(intent)}
-            "notification" ->{val intent = Intent(this, Notification::class.java)
-                startActivity(intent)}
-            "search" ->{
+            "help" -> {
+                val intent = Intent(this, Help::class.java)
+                startActivity(intent)
+            }
+            "notification" -> {
+                val intent = Intent(this, NotificationOptions::class.java)
+                startActivity(intent)
+            }
+            "search" -> {
                 val intent = Intent(this, TechnologyFragment::class.java)
-                startActivity(intent)}
-            "back" ->{this.onBackPressed()
+                startActivity(intent)
+            }
+            "back" -> {
+                this.onBackPressed()
                 return true
             }
         }

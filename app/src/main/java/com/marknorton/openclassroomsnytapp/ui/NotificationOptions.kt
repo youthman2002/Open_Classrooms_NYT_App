@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.marknorton.openclassroomsnytapp.R
 import kotlinx.android.synthetic.main.activity_notification.*
 
-class Notification : AppCompatActivity() {
+class NotificationOptions : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
@@ -96,7 +96,7 @@ class Notification : AppCompatActivity() {
                 notificationPreferences.edit().putBoolean("notification", true).apply()
                 if ((!cbArt.isChecked) && (!cbBusiness.isChecked) && (!cbEntrepreneurs.isChecked) && (!cbPolitics.isChecked) && (!cbSports.isChecked) && (!cbTravel.isChecked) || (etSearch.text.isEmpty())) {
                     Toast.makeText(
-                        this@Notification,
+                        this@NotificationOptions,
                         "You MUST choose at least 1 Category and Search Term",
                         Toast.LENGTH_LONG
                     ).show()
