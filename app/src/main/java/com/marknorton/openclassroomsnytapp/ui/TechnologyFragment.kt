@@ -1,5 +1,7 @@
 package com.marknorton.openclassroomsnytapp.ui
 
+import android.annotation.SuppressLint
+import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,68 +10,111 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.marknorton.openclassroomsnytapp.ArticleAdapter
-import com.marknorton.openclassroomsnytapp.ArticleModel
-import com.marknorton.openclassroomsnytapp.R
+import com.marknorton.openclassroomsnytapp.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.onComplete
 import org.json.JSONObject
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.net.URL
 import java.util.*
 
 class TechnologyFragment : Fragment() {
     private var urls = ""
+    var returnList: ArrayList<Cell> = ArrayList()
+    lateinit var adapter: ArticleAdapter
 
+    @SuppressLint("DefaultLocale")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_top_stories, container, false)
-        doAsync {
-            urls =
-                (URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:(\"Technology\")&q=Science&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
-            onComplete {
-                // After loading the Technology Articles, process the data
-                val returnList = ArrayList<ArticleModel>()
-                var jsonObject: JSONObject? = JSONObject(urls)
-                jsonObject = jsonObject?.getJSONObject("response")
-                val jsonObjects = (jsonObject?.getJSONArray("docs"))
-                Log.d("Log", "Log - jsonObjects - " + jsonObjects.toString())
-                var image = ""
-                var url: String
-                var pubDate: String
-                var section: String
-                var theHeadline: String
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://api.nytimes.com")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
-                for (i in 0 until jsonObjects!!.length()) {
-                    val c = jsonObjects.getJSONObject(i)
+        // Create Service
+        val service = retrofit.create(APIService::class.java)
+        CoroutineScope(Dispatchers.IO).launch {
+            // Do the GET request and get response
+            val response = service.getTechnology()
+            Log.d("Log", "Log ------ Technology response= " + response.toString())
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    val items = response.body()?.results
+                    if (items != null) {
+                        for (i in 0 until items.count()) {
+                            var section = items[i].section ?: "N/A section"
+                            val newSection = section.capitalize()
+                            section = newSection
 
-                    section = (c.getString("section_name"))
-                    val imageurl = c.getJSONArray("multimedia")
-                    for (j in 0 until imageurl.length()) {
-                        val d = imageurl.getJSONObject(j)
-                        val subtype = d.getString("subtype")
+                            var subSection = items[i].subsection ?: "N/A subSection"
+                            val newSubSection = subSection.capitalize()
+                            subSection = newSubSection
+                            if (subSection != "") {
+                                subSection = "  > $subSection"
+                            }
 
-                        if (subtype == "thumbnail") {
-                            image = (d.getString("url"))
-                            image = "https://www.nytimes.com/$image"
+                            val title = items[i].title ?: "N/A title"
+                            val url = items[i].url ?: "N/A url"
+                            var publishDate = items[i].publishDate ?: "N/A publishDate"
+                            val dateData = publishDate.split("T")
+                            publishDate = dateData[0]
+                            var mediaDataUrl = ""
+                            val medias = items[i].multimedia
+                            if (medias != null) {
+                                for (j in 0 until medias.count()) {
+                                    val mediaUrl = medias[j].mediaUrl ?: "N/A multimedia_url"
+                                    val mediaFormat = medias[j].mediaFormat ?: "N/A media_format"
+                                    if (mediaFormat == "Standard Thumbnail") {
+                                        mediaDataUrl = mediaUrl
+                                    }
+                                    if ((mediaDataUrl == "") && (mediaFormat == "thumbLarge")) {
+                                        mediaDataUrl = mediaUrl
+                                    }
+                                }
+                            }
+                            val db = context?.let { Database(it) }
+                            val dbResult: Cursor = db!!.getHeadline(title)
+                            dbResult.moveToFirst()
+                            var viewed = "0"
+                            if (dbResult.count > 0) {
+                                viewed = dbResult.getString(2)
+                            }
+                            val model = Cell(
+                                section,
+                                subSection,
+                                title,
+                                url,
+                                publishDate,
+                                mediaDataUrl,
+                                viewed
+                            )
+                            returnList.add(model)
+
                         }
+                    } else {
+                        //  do Nothing
                     }
-                    val headline = c.getJSONObject("headline")
-                    theHeadline = (headline.getString("main"))
-                    pubDate = (c.getString("pub_date"))
-                    url = (c.getString("web_url"))
+                    val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
+                    recyclerview.layoutManager = LinearLayoutManager(activity)
+                    recyclerview.adapter = ArticleAdapter(returnList, context!!)
 
-                    returnList.add(ArticleModel(section, image, theHeadline, pubDate, url))
-                    image = ""
+                } else {
+
+                    Log.e("RETROFIT_ERROR", response.code().toString())
+
                 }
-
-                val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
-                recyclerview.layoutManager = LinearLayoutManager(context)
-                recyclerview.adapter = ArticleAdapter(returnList, context!!)
             }
         }
+
         return rootView
     }
 }

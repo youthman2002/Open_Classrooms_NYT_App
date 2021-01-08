@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.marknorton.openclassroomsnytapp.ui.Cell
 import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
 
 
@@ -21,36 +22,35 @@ import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
  *
  */
 
-  class ArticleAdapter(private val articleList: ArrayList<ArticleModel>, private val context: Context): RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
+class ArticleAdapter(private val articleList: ArrayList<Cell>, private val context: Context) :
+    RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.story_row_layout, parent, false)
+        val v =
+            LayoutInflater.from(parent.context).inflate(R.layout.story_row_layout, parent, false)
         return ViewHolder(v)
 
     }
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val db = Database(context)
-        val result: Cursor = db.getHeadline(articleList[position].headline)
-        result.moveToFirst()
-        // Populate the data into the List to send to History Info
-        val viewed=result.getString(2)
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // If the headline has been viewed, change the color to black
+        val viewed = articleList[position].viewed
         if (viewed == "1") {
-            holder.tvHeadline.text = articleList[position].headline
-                holder.tvHeadline.setTextColor(Color.parseColor("#000000"))
+            holder.tvHeadline.text = articleList[position].title
+            holder.tvHeadline.setTextColor(Color.parseColor("#000000"))
         } else {
-            holder.tvHeadline.text = articleList[position].headline
+            holder.tvHeadline.text = articleList[position].title
             holder.tvHeadline.setTextColor(Color.parseColor("#D81B60"))
         }
 
         holder.tvSection.text = articleList[position].section
-        holder.tvDate.text = articleList[position].date
+        holder.tvSubSection.text = articleList[position].subsection
+        holder.tvDate.text = articleList[position].publishDate
 
         // Set the onClickListener to take the article to the webview
-        holder.storyRow.setOnClickListener{
+        holder.storyRow.setOnClickListener {
             // Add the headline to the SQLite database
-            db.addViewed(articleList[position].headline )
+//            db.addViewed(articleList[position].title )
             // Change the color to show the article has been viewed
             holder.tvHeadline.setTextColor(Color.parseColor("#000000"))
             val intent = Intent(context, WebViewActivity::class.java)
@@ -59,7 +59,7 @@ import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
         }
 
         Glide.with(holder.imageView)
-            .load(articleList[position].imageURL)
+            .load(articleList[position].multimedia)
             .apply(
                 RequestOptions()
                 .placeholder(R.drawable.nothumb)
@@ -73,9 +73,11 @@ import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val tvSection: TextView = itemView.findViewById(R.id.tvSection)
+        val tvSubSection: TextView = itemView.findViewById(R.id.tvSubSection)
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
         val tvHeadline: TextView = itemView.findViewById(R.id.tvHeadline)
         val tvDate: TextView = itemView.findViewById(R.id.tvDate)
         val storyRow: CardView = itemView.findViewById(R.id.storyRow)
+//        val viewed = itemView.viewed
     }
 }

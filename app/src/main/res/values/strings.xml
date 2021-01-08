@@ -38,5 +38,6 @@
     <string name="channelId">NYT Alarm</string>
     <string name="channelDescription">You have unseen articles that match your search.</string>
     <string name="ivDescription">Image View</string>
+    <string name="tvSubSection">SubSection</string>
 
 </resources>
