@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.marknorton.openclassroomsnytapp.R
 
@@ -27,10 +26,6 @@ class NotificationAlarm : BroadcastReceiver() {
         val edate = intent.getStringExtra("edate")
         val categories = intent.getStringExtra("categories")
         val searchString = intent.getStringExtra("searchString")
-        Log.d(
-            "Log",
-            "Log - NotificationAlarm searchString=$searchString - sdate=$sdate - edate=$edate - categories=$categories"
-        )
 
         lateinit var notificationChannel: NotificationChannel
         lateinit var builder: NotificationCompat.Builder

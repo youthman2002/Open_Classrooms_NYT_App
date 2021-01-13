@@ -2,7 +2,6 @@ package com.marknorton.openclassroomsnytapp.ui
 
 import android.database.Cursor
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,11 +28,6 @@ class SearchResults : AppCompatActivity() {
         val edate = intent.getStringExtra("edate")
         val searchString = intent.getStringExtra("searchString")
 
-        Log.d(
-            "Log",
-            "Log - SearchResults - searchString=$searchString - sdate=$sdate - edate=$edate - categories=$categories"
-        )
-
         var headline: String
         val returnList = ArrayList<Cell>()
 
@@ -49,13 +43,11 @@ class SearchResults : AppCompatActivity() {
             val response = service.getSearch(categories!!, sdate!!, edate!!, searchString!!)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    Log.d("Log", "Log - Response Successful - $response")
                     val body = response.body()?.results
                     val results = body?.docs
                     if (results != null) {
                         for (h in 0 until results.count()) {
                             val section = results[h].section
-                            Log.d("Log", "Log - section = $section")
                             var subSection = results[h].subsection
                             if (subSection != null) {
                                 subSection = " > $subSection"

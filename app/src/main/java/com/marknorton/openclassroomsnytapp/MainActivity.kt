@@ -4,7 +4,6 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -86,11 +85,6 @@ class MainActivity : AppCompatActivity() {
         myIntent.putExtra("edate", edate)
         myIntent.putExtra("categories", categories)
         myIntent.putExtra("searchString", searchString)
-        Log.d(
-            "Log",
-            "Log - MainActivity searchString=$searchString - sdate=$sdate - edate=$edate - categories=$categories"
-        )
-
         pendingIntent = PendingIntent.getBroadcast(
             this.applicationContext, 280192, myIntent, PendingIntent.FLAG_CANCEL_CURRENT
         )
