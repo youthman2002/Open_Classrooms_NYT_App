@@ -15,18 +15,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.onComplete
-import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.URL
 import java.util.*
 
 class TechnologyFragment : Fragment() {
-    private var urls = ""
-    var returnList: ArrayList<Cell> = ArrayList()
-    lateinit var adapter: ArticleAdapter
+    private var returnList: ArrayList<Cell> = ArrayList()
+    private var headline = ""
 
     @SuppressLint("DefaultLocale")
     override fun onCreateView(
@@ -45,54 +40,50 @@ class TechnologyFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             // Do the GET request and get response
             val response = service.getTechnology()
-            Log.d("Log", "Log ------ Technology response= " + response.toString())
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    val items = response.body()?.results
-                    if (items != null) {
-                        for (i in 0 until items.count()) {
-                            var section = items[i].section ?: "N/A section"
-                            val newSection = section.capitalize()
-                            section = newSection
-
-                            var subSection = items[i].subsection ?: "N/A subSection"
-                            val newSubSection = subSection.capitalize()
-                            subSection = newSubSection
-                            if (subSection != "") {
-                                subSection = "  > $subSection"
+                    val body = response.body()?.results
+                    val results = body?.docs
+                    if (results != null) {
+                        for (h in 0 until results.count()) {
+                            val section = results[h].section
+                            var subSection = results[h].subsection
+                            if (subSection != null) {
+                                subSection = " > $subSection"
                             }
-
-                            val title = items[i].title ?: "N/A title"
-                            val url = items[i].url ?: "N/A url"
-                            var publishDate = items[i].publishDate ?: "N/A publishDate"
-                            val dateData = publishDate.split("T")
-                            publishDate = dateData[0]
+                            val url = results[h].url
+                            var publishDate = results[h].publishDate
+                            val dateData = publishDate?.split("T")
+                            publishDate = dateData!![0]
+                            val headlineData = results[h].headlineData
+                            headline = headlineData?.headline ?: "N/A headline"
+                            val mediaData = results[h].mediaData
                             var mediaDataUrl = ""
-                            val medias = items[i].multimedia
-                            if (medias != null) {
-                                for (j in 0 until medias.count()) {
-                                    val mediaUrl = medias[j].mediaUrl ?: "N/A multimedia_url"
-                                    val mediaFormat = medias[j].mediaFormat ?: "N/A media_format"
+                            if (mediaData != null) {
+                                for (j in 0 until mediaData.count()) {
+                                    val mediaUrl = mediaData[j].mediaUrl ?: "N/A multimedia_url"
+                                    val mediaFormat = mediaData[j].mediaFormat ?: "N/A media_format"
                                     if (mediaFormat == "Standard Thumbnail") {
-                                        mediaDataUrl = mediaUrl
+                                        mediaDataUrl = "https://www.nytimes.com/$mediaUrl"
                                     }
                                     if ((mediaDataUrl == "") && (mediaFormat == "thumbLarge")) {
-                                        mediaDataUrl = mediaUrl
+                                        mediaDataUrl = "https://www.nytimes.com/$mediaUrl"
                                     }
                                 }
                             }
+
                             val db = context?.let { Database(it) }
-                            val dbResult: Cursor = db!!.getHeadline(title)
+                            val dbResult: Cursor = db!!.getHeadline(headline)
                             dbResult.moveToFirst()
                             var viewed = "0"
                             if (dbResult.count > 0) {
                                 viewed = dbResult.getString(2)
                             }
                             val model = Cell(
-                                section,
-                                subSection,
-                                title,
-                                url,
+                                section!!,
+                                subSection!!,
+                                headline,
+                                url!!,
                                 publishDate,
                                 mediaDataUrl,
                                 viewed
@@ -100,18 +91,14 @@ class TechnologyFragment : Fragment() {
                             returnList.add(model)
 
                         }
-                    } else {
-                        //  do Nothing
                     }
-                    val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
-                    recyclerview.layoutManager = LinearLayoutManager(activity)
-                    recyclerview.adapter = ArticleAdapter(returnList, context!!)
-
                 } else {
-
                     Log.e("RETROFIT_ERROR", response.code().toString())
-
                 }
+
+                val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
+                recyclerview.layoutManager = LinearLayoutManager(activity)
+                recyclerview.adapter = ArticleAdapter(returnList, context!!)
             }
         }
 

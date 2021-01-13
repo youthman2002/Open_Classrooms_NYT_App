@@ -2,7 +2,6 @@ package com.marknorton.openclassroomsnytapp
 
 import android.content.Context
 import android.content.Intent
-import android.database.Cursor
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -24,12 +23,12 @@ import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
 
 class ArticleAdapter(private val articleList: ArrayList<Cell>, private val context: Context) :
     RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
+    private val db: Database = Database(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v =
             LayoutInflater.from(parent.context).inflate(R.layout.story_row_layout, parent, false)
         return ViewHolder(v)
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -50,7 +49,7 @@ class ArticleAdapter(private val articleList: ArrayList<Cell>, private val conte
         // Set the onClickListener to take the article to the webview
         holder.storyRow.setOnClickListener {
             // Add the headline to the SQLite database
-//            db.addViewed(articleList[position].title )
+            db.addViewed(articleList[position].title)
             // Change the color to show the article has been viewed
             holder.tvHeadline.setTextColor(Color.parseColor("#000000"))
             val intent = Intent(context, WebViewActivity::class.java)
@@ -62,7 +61,7 @@ class ArticleAdapter(private val articleList: ArrayList<Cell>, private val conte
             .load(articleList[position].multimedia)
             .apply(
                 RequestOptions()
-                .placeholder(R.drawable.nothumb)
+                    .placeholder(R.drawable.nothumb)
             )
             .into(holder.imageView)
     }

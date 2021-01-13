@@ -8,18 +8,15 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.marknorton.openclassroomsnytapp.R
 import kotlinx.android.synthetic.main.activity_search_articles.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.onComplete
-import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class SearchArticles : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private var sdate: ArrayList<String> = ArrayList()
     private var edate: ArrayList<String> = ArrayList()
 @SuppressLint("SimpleDateFormat")
 var dateFormat = SimpleDateFormat("yyyy-MM-dd")
-    private var urls=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +40,6 @@ var dateFormat = SimpleDateFormat("yyyy-MM-dd")
         startAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spStartDate.adapter = startAdapter
 
-
         val endAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, edate)
         endAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spEndDate.adapter = endAdapter
@@ -53,41 +49,42 @@ var dateFormat = SimpleDateFormat("yyyy-MM-dd")
             val searchString = etSearch.text.toString()
             val startDate = spStartDate.selectedItem.toString()
             val endDate = spEndDate.selectedItem.toString()
-            var categories=""
+            var categories = ""
 
             if (cbArt.isChecked) {
-                categories += "\"Art\" "
+                categories += "Art "
             }
             if (cbBusiness.isChecked) {
-                categories += "\"Business\" "
+                categories += "Business "
             }
             if (cbEntrepreneurs.isChecked) {
-                categories += "\"Entrepreneurs\" "
+                categories += "Entrepreneurs "
             }
             if (cbPolitics.isChecked) {
-                categories += "\"Politics\" "
+                categories += "Politics "
             }
             if (cbSports.isChecked) {
-                categories += "\"Sports\" "
+                categories += "Sports "
             }
             if (cbTravel.isChecked) {
-                categories += "\"Travel\" "
+                categories += "Travel "
             }
 
-            if((searchString == "")||((!cbArt.isChecked) && (!cbBusiness.isChecked) && (!cbEntrepreneurs.isChecked)&& (!cbPolitics.isChecked) && (!cbSports.isChecked) && (!cbTravel.isChecked))){
-                Toast.makeText(this, "You MUST choose a Keyword and at least 1 Category", Toast.LENGTH_LONG).show()
-            }else {
-                doAsync {
-                    urls =
-                        (URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:($categories)&q=$searchString&facet_field=day_of_week&facet=true&begin_date=$startDate&end_date=$endDate&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd").readText())
-                    onComplete {
-                        val intent = Intent(applicationContext, SearchResults::class.java)
-                        intent.putExtra("data", urls)
-                        startActivity(intent)
-                    }
-                }
+            if ((searchString == "") || ((!cbArt.isChecked) && (!cbBusiness.isChecked) && (!cbEntrepreneurs.isChecked) && (!cbPolitics.isChecked) && (!cbSports.isChecked) && (!cbTravel.isChecked))) {
+                Toast.makeText(
+                    this,
+                    "You MUST choose a Keyword and at least 1 Category",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                val intent = Intent(applicationContext, SearchResults::class.java)
+                intent.putExtra("categories", categories)
+                intent.putExtra("sdate", startDate)
+                intent.putExtra("edate", endDate)
+                intent.putExtra("searchString", searchString)
+                startActivity(intent)
             }
-            }
+        }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

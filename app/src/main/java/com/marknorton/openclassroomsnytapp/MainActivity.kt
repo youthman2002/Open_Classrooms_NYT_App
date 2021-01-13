@@ -4,6 +4,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -78,18 +79,24 @@ class MainActivity : AppCompatActivity() {
         val sdf: DateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
         val cal = Calendar.getInstance()
         cal.add(Calendar.DATE, -1)
-        val startDate = sdf.format(cal.time)
-        val endDate = sdf.format(Date())
+        val sdate = sdf.format(cal.time)
+        val edate = sdf.format(Date())
 
-        val urls =
-            "https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:($categories)&q=$searchString&facet_field=day_of_week&facet=true&begin_date=$startDate&end_date=$endDate&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd"
-        myIntent.putExtra("data", urls)
+        myIntent.putExtra("sdate", sdate)
+        myIntent.putExtra("edate", edate)
+        myIntent.putExtra("categories", categories)
+        myIntent.putExtra("searchString", searchString)
+        Log.d(
+            "Log",
+            "Log - MainActivity searchString=$searchString - sdate=$sdate - edate=$edate - categories=$categories"
+        )
+
         pendingIntent = PendingIntent.getBroadcast(
             this.applicationContext, 280192, myIntent, PendingIntent.FLAG_CANCEL_CURRENT
         )
         cal.timeInMillis = System.currentTimeMillis()
-        cal[Calendar.HOUR_OF_DAY] = 12
-        cal[Calendar.MINUTE] = 0
+        cal[Calendar.HOUR_OF_DAY] = 5
+        cal[Calendar.MINUTE] = 53
         alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         alarmManager.setInexactRepeating(
             AlarmManager.RTC_WAKEUP, cal.timeInMillis,
