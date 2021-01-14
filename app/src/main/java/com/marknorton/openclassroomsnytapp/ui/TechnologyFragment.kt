@@ -30,6 +30,7 @@ class TechnologyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_top_stories, container, false)
+        // Builder to get URL for Fragment
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.nytimes.com")
             .addConverterFactory(GsonConverterFactory.create())
@@ -42,6 +43,7 @@ class TechnologyFragment : Fragment() {
             val response = service.getTechnology()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
+                    // Process the response from API
                     val body = response.body()?.results
                     val results = body?.docs
                     if (results != null) {
@@ -57,8 +59,11 @@ class TechnologyFragment : Fragment() {
                             publishDate = dateData!![0]
                             val headlineData = results[h].headlineData
                             headline = headlineData?.headline ?: "N/A headline"
+                            val db = Database(context!!)
+                            db.addHeadline(headline)
                             val mediaData = results[h].mediaData
                             var mediaDataUrl = ""
+                            // Process Image
                             if (mediaData != null) {
                                 for (j in 0 until mediaData.count()) {
                                     val mediaUrl = mediaData[j].mediaUrl ?: "N/A multimedia_url"
@@ -71,9 +76,8 @@ class TechnologyFragment : Fragment() {
                                     }
                                 }
                             }
-
-                            val db = context?.let { Database(it) }
-                            val dbResult: Cursor = db!!.getHeadline(headline)
+                            // Check Database to see if article has been read
+                            val dbResult: Cursor = db.getHeadline(headline)
                             dbResult.moveToFirst()
                             var viewed = "0"
                             if (dbResult.count > 0) {
@@ -95,13 +99,11 @@ class TechnologyFragment : Fragment() {
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())
                 }
-
                 val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
                 recyclerview.layoutManager = LinearLayoutManager(activity)
                 recyclerview.adapter = ArticleAdapter(returnList, context!!)
             }
         }
-
         return rootView
     }
 }

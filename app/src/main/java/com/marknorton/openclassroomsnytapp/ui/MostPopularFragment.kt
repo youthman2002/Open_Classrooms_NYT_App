@@ -53,7 +53,16 @@ class MostPopularFragment : Fragment() {
                             if (subSection != "") {
                                 subSection = "  > $subSection"
                             }
-                            val title = items[i].title ?: "N/A title"
+                            val headline = items[i].title ?: "N/A title"
+                            val db = Database(context!!)
+                            db.addHeadline(headline)
+                            // Check Database to see if article has been read
+                            val dbResult: Cursor = db.getHeadline(headline)
+                            dbResult.moveToFirst()
+                            var viewed = "0"
+                            if (dbResult.count > 0) {
+                                viewed = dbResult.getString(2)
+                            }
                             val url = items[i].url ?: "N/A url"
                             var publishDate = items[i].publishDate ?: "N/A publishDate"
                             val dateData = publishDate.split("T")
@@ -79,17 +88,11 @@ class MostPopularFragment : Fragment() {
                                     }
                                 }
                             }
-                            val db = context?.let { Database(it) }
-                            val dbResult: Cursor = db!!.getHeadline(title)
-                            dbResult.moveToFirst()
-                            var viewed = "0"
-                            if (dbResult.count > 0) {
-                                viewed = dbResult.getString(2)
-                            }
+//                            Log.d("Log", "Log MOST - Viewed=$viewed - headline=$headline")
                             val model = Cell(
                                 section,
                                 subSection,
-                                title,
+                                headline,
                                 url,
                                 publishDate,
                                 mediaDataUrl,

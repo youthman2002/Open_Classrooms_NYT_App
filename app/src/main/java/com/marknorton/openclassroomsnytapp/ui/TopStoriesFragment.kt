@@ -7,9 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.marknorton.openclassroomsnytapp.APIService
@@ -25,9 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 class TopStoriesFragment : Fragment() {
-    private var urls = ""
-    var returnList: ArrayList<Cell> = ArrayList()
-    lateinit var adapter: ArticleAdapter
+    private var returnList: ArrayList<Cell> = ArrayList()
 
     @SuppressLint("DefaultLocale")
     override fun onCreateView(
@@ -49,6 +45,7 @@ class TopStoriesFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val items = response.body()?.results
+                    // Process Response
                     if (items != null) {
                         for (i in 0 until items.count()) {
                             var section = items[i].section ?: "N/A section"
@@ -61,8 +58,16 @@ class TopStoriesFragment : Fragment() {
                             if (subSection != "") {
                                 subSection = "  > $subSection"
                             }
-
-                            val title = items[i].title ?: "N/A title"
+                            val headline = items[i].title ?: "N/A title"
+                            val db = Database(context!!)
+                            db.addHeadline(headline)
+                            // Check Database to see if article has been read
+                            val dbResult: Cursor = db.getHeadline(headline)
+                            dbResult.moveToFirst()
+                            var viewed = "0"
+                            if (dbResult.count > 0) {
+                                viewed = dbResult.getString(2)
+                            }
                             val url = items[i].url ?: "N/A url"
                             var publishDate = items[i].publishDate ?: "N/A publishDate"
                             val dateData = publishDate.split("T")
@@ -81,36 +86,27 @@ class TopStoriesFragment : Fragment() {
                                     }
                                 }
                             }
-                            val db = context?.let { Database(it) }
-                            val dbResult: Cursor = db!!.getHeadline(title)
-                            dbResult.moveToFirst()
-                            var viewed = "0"
-                            if (dbResult.count > 0) {
-                                viewed = dbResult.getString(2)
-                            }
+//                            Log.d("Log", "Log TOP - Viewed=$viewed - headline=$headline")
                             val model = Cell(
                                 section,
                                 subSection,
-                                title,
+                                headline,
                                 url,
                                 publishDate,
                                 mediaDataUrl,
                                 viewed
                             )
                             returnList.add(model)
-
                         }
                     } else {
-                        //  do Nothing
+                        Log.d("Log", "Log - Items was empty")
                     }
+
                     val recyclerview = rootView.findViewById(R.id.rvTopStories) as RecyclerView
                     recyclerview.layoutManager = LinearLayoutManager(activity)
                     recyclerview.adapter = ArticleAdapter(returnList, context!!)
-
                 } else {
-
                     Log.e("RETROFIT_ERROR", response.code().toString())
-
                 }
             }
         }

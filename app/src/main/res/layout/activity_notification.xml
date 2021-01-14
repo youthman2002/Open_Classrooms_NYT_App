@@ -14,8 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:hint="@string/etSearch"
-        android:inputType="text" />
+        android:inputType="text"
+        tools:ignore="LabelFor" />
 
     <CheckBox
         android:id="@+id/cbArt"

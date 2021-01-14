@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1093663415585",
+    "project_id": "open-classrooms-nyt-app",
+    "storage_bucket": "open-classrooms-nyt-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093663415585:android:a3614753c1964c6b92b260",
+        "android_client_info": {
+          "package_name": "com.marknorton.openclassroomsnytapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093663415585-h5p18lboqa35rchkkfiq8bu9g7ah7qm6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQ59pfYGqHIOCtKvfDJoKmAYX_z3fEG9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093663415585-h5p18lboqa35rchkkfiq8bu9g7ah7qm6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

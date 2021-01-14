@@ -15,12 +15,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.marknorton.openclassroomsnytapp.ui.Cell
 import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
 
-
 /**
  *  Created by Mark Norton on 10/16/2019.
  *
  */
-
 class ArticleAdapter(private val articleList: ArrayList<Cell>, private val context: Context) :
     RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
     private val db: Database = Database(context)
@@ -57,6 +55,7 @@ class ArticleAdapter(private val articleList: ArrayList<Cell>, private val conte
             context.startActivity(intent)
         }
 
+        //Process the Image for the article, or replace with the "nothumb" image
         Glide.with(holder.imageView)
             .load(articleList[position].multimedia)
             .apply(
@@ -77,6 +76,5 @@ class ArticleAdapter(private val articleList: ArrayList<Cell>, private val conte
         val tvHeadline: TextView = itemView.findViewById(R.id.tvHeadline)
         val tvDate: TextView = itemView.findViewById(R.id.tvDate)
         val storyRow: CardView = itemView.findViewById(R.id.storyRow)
-//        val viewed = itemView.viewed
     }
 }

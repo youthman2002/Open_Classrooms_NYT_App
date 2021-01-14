@@ -26,6 +26,7 @@ var dateFormat = SimpleDateFormat("yyyy-MM-dd")
 
         spStartDate!!.onItemSelectedListener = this
         spEndDate!!.onItemSelectedListener = this
+        // Set up the Calendar to search specific dates
         var counter = 0
         while (counter < 30) {
             val cal = Calendar.getInstance()

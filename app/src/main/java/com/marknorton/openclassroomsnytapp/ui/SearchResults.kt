@@ -30,13 +30,13 @@ class SearchResults : AppCompatActivity() {
 
         var headline: String
         val returnList = ArrayList<Cell>()
-
+        // Set up URL for download
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.nytimes.com")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        // Create Service
+        // Create Service & Download URL Data
         val service = retrofit.create(APIService::class.java)
         CoroutineScope(Dispatchers.IO).launch {
             // Do the GET request and get response
@@ -58,6 +58,15 @@ class SearchResults : AppCompatActivity() {
                             publishDate = dateData!![0]
                             val headlineData = results[h].headlineData
                             headline = headlineData?.headline ?: "N/A headline"
+                            val db = Database(applicationContext!!)
+                            db.addHeadline(headline)
+                            // Check Database to see if article has been read
+                            val dbResult: Cursor = db.getHeadline(headline)
+                            dbResult.moveToFirst()
+                            var viewed = "0"
+                            if (dbResult.count > 0) {
+                                viewed = dbResult.getString(2)
+                            }
                             val mediaData = results[h].mediaData
                             var mediaDataUrl = ""
                             if (mediaData != null) {
@@ -72,14 +81,6 @@ class SearchResults : AppCompatActivity() {
                                     }
                                 }
                             }
-                            val db = applicationContext?.let { Database(it) }
-                            val dbResult: Cursor = db!!.getHeadline(headline)
-                            dbResult.moveToFirst()
-                            val viewed = if (dbResult.count > 0) {
-                                "1"
-                            } else {
-                                "0"
-                            }
                             val model = Cell(
                                 section!!,
                                 subSection!!,
@@ -90,7 +91,6 @@ class SearchResults : AppCompatActivity() {
                                 viewed
                             )
                             returnList.add(model)
-
                         }
                     }
                 }

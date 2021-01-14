@@ -15,7 +15,7 @@ class WebViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_web_view)
         val actionbar = supportActionBar
         actionbar!!.setDisplayHomeAsUpEnabled(true)
-
+        // Get the URL passed from Clicked Article and display in WebView
         val url = intent.getStringExtra("url")
         if (url != null) {
             // Load the Article in a Webview
@@ -35,11 +35,9 @@ class WebViewActivity : AppCompatActivity() {
             R.id.menuHelp -> selectedOption = "help"
             R.id.menuNotification -> selectedOption = "notification"
             R.id.menuSearch -> selectedOption = "search"
-//            R.id.menuBack -> selectedOption = "back"
         }
         when(selectedOption){
             "about" ->{  val intent = Intent(this, About::class.java)
-                //              intent.putExtra("uid", userUID)
                 startActivity(intent)}
             "help" -> {
                 val intent = Intent(this, Help::class.java)
