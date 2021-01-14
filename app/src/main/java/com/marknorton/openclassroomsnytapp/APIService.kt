@@ -10,7 +10,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface APIService {
-
     //   Do search for Top Stories (On Top Stories Tab)
     @GET("/svc/topstories/v2/science.json?api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd")
     suspend fun getTopStories(): Response<TopStoriesModel>
@@ -31,4 +30,8 @@ interface APIService {
         @Query("end_date") edate: String,
         @Query("q") searchString: String
     ): Response<TechnologyModel>
+
+    //   Do search for Technology Articles (On Technology Tab)
+    @GET("/svc/search/v2/articlesearch.json?q=&api-key=MI5HXzccCCRrvJBlbUJghlzbb2281VRd&" + "fq=news_desk:Technology")
+    suspend fun getTechnologyTest(): Response<TechnologyModel>
 }

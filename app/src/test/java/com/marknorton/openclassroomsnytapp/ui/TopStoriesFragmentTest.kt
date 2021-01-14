@@ -1,11 +1,8 @@
 package com.marknorton.openclassroomsnytapp.ui
 
 
-import com.marknorton.openclassroomsnytapp.APIService
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
@@ -14,13 +11,16 @@ import java.io.InputStreamReader
 /**
  * Created by Mark Norton on 12/22/2020.
  */
-class TechnologyFragmentTest {
+class TopStoriesFragmentTest {
 
     @Test
     fun testJSONApi() {
-        val filename = "technology_fragment_sample_data.json"
+        val filename = "topstories_fragment_sample_data.json"
         val inputStream = readFileWithNewLineFromResources(filename)
-        assertEquals("{\"Technology\":\"OK\"}", inputStream)
+
+
+
+        assertEquals("{\"Top Stories\":\"OK\"}", inputStream)
 
     }
 

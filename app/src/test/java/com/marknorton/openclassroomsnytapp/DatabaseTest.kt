@@ -16,7 +16,7 @@ import org.robolectric.annotation.Config
 class DatabaseTest {
 
     @Test
-    fun canGetMood() {
+    fun databaseTest() {
         val headline = "3"
         val db = Database(RuntimeEnvironment.application)
         val sqLiteDatabase = db.writableDatabase
