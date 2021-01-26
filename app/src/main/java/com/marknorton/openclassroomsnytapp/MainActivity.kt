@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-// Making a change in order to import to Travis 6
+// Making a change in order to import to Travis 7
 
         // Set up bottom navigation bar and Main Screen View
         val adapter = MyPagerAdapter(supportFragmentManager)
