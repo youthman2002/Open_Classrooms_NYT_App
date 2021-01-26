@@ -6,6 +6,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.ART
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.BUSINESS
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.CATEGORIES
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.EDATE
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.ENTREPRENEUR
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.POLITICS
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.SDATE
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.SEARCHSTRING
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.TRAVEL
 import com.marknorton.openclassroomsnytapp.R
 import kotlinx.android.synthetic.main.activity_search_articles.*
 import java.text.SimpleDateFormat
@@ -15,17 +24,18 @@ import java.util.*
 class SearchArticles : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private var sdate: ArrayList<String> = ArrayList()
     private var edate: ArrayList<String> = ArrayList()
-@SuppressLint("SimpleDateFormat")
-var dateFormat = SimpleDateFormat("yyyy-MM-dd")
+
+    @SuppressLint("SimpleDateFormat")
+    var dateFormat = SimpleDateFormat("yyyy-MM-dd")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_articles)
         val actionbar = supportActionBar
         actionbar!!.setDisplayHomeAsUpEnabled(true)
-
         spStartDate!!.onItemSelectedListener = this
         spEndDate!!.onItemSelectedListener = this
+
         // Set up the Calendar to search specific dates
         var counter = 0
         while (counter < 30) {
@@ -53,24 +63,24 @@ var dateFormat = SimpleDateFormat("yyyy-MM-dd")
             var categories = ""
 
             if (cbArt.isChecked) {
-                categories += "Art "
+                categories += ART
             }
             if (cbBusiness.isChecked) {
-                categories += "Business "
+                categories += BUSINESS
             }
             if (cbEntrepreneurs.isChecked) {
-                categories += "Entrepreneurs "
+                categories += ENTREPRENEUR
             }
             if (cbPolitics.isChecked) {
-                categories += "Politics "
+                categories += POLITICS
             }
             if (cbSports.isChecked) {
-                categories += "Sports "
+                categories += POLITICS
             }
             if (cbTravel.isChecked) {
-                categories += "Travel "
+                categories += TRAVEL
             }
-
+            categories += " "
             if ((searchString == "") || ((!cbArt.isChecked) && (!cbBusiness.isChecked) && (!cbEntrepreneurs.isChecked) && (!cbPolitics.isChecked) && (!cbSports.isChecked) && (!cbTravel.isChecked))) {
                 Toast.makeText(
                     this,
@@ -79,10 +89,10 @@ var dateFormat = SimpleDateFormat("yyyy-MM-dd")
                 ).show()
             } else {
                 val intent = Intent(applicationContext, SearchResults::class.java)
-                intent.putExtra("categories", categories)
-                intent.putExtra("sdate", startDate)
-                intent.putExtra("edate", endDate)
-                intent.putExtra("searchString", searchString)
+                intent.putExtra(CATEGORIES, categories)
+                intent.putExtra(SDATE, startDate)
+                intent.putExtra(EDATE, endDate)
+                intent.putExtra(SEARCHSTRING, searchString)
                 startActivity(intent)
             }
         }

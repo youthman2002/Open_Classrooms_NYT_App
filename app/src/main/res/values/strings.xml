@@ -39,5 +39,9 @@
     <string name="channelDescription">You have unseen articles that match your search.</string>
     <string name="ivDescription">Image View</string>
     <string name="tvSubSection">SubSection</string>
-
+    <string name="topStories">Top Stories</string>
+    <string name="mostPopular">Most Popular</string>
+    <string name="technology">Technology</string>
+    <string name="notification">notification</string>
+    <string name="chooseOne">You MUST choose at least 1 Category and Search Term</string>
 </resources>

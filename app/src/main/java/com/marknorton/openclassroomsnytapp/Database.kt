@@ -6,8 +6,14 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.COLUMN_HEADLINE
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.COLUMN_ID
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.COLUMN_VIEWED
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.DB_NAME
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.DB_VERSION
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.TABLE_NAME
 
-/**
+ /**
 * Created by Mark Norton on 12/12/2019.
 * This includes the Database Calls to sqLite.
 *     --- Headlines are saved in this database.  They are marked once they are viewed
@@ -54,18 +60,15 @@ class Database(context: Context):
             "UPDATE $TABLE_NAME SET $COLUMN_VIEWED = 1 WHERE $COLUMN_HEADLINE = '$headline'"
         sqLiteDatabase.execSQL(strSQL)
     }
-    @SuppressLint("Recycle")
-    internal fun getHeadline(headline:String):Cursor {
-        // Get the headline from the database
-        val sqLiteDatabase = this.writableDatabase
-        return (sqLiteDatabase.rawQuery("SELECT * FROM $TABLE_NAME WHERE $COLUMN_HEADLINE = '$headline'", null))
-    }
-    companion object {
-        private const val DB_NAME = "NYTDatabase"
-        private const val TABLE_NAME = "headlines"
-        private const val COLUMN_ID = "id"
-        private const val COLUMN_HEADLINE = "headline"
-        private const val COLUMN_VIEWED = "viewed"
-        private const val DB_VERSION = 1
-    }
-}
+
+     @SuppressLint("Recycle")
+     internal fun getHeadline(headline: String): Cursor {
+         // Get the headline from the database
+         val sqLiteDatabase = this.writableDatabase
+         return (sqLiteDatabase.rawQuery(
+             "SELECT * FROM $TABLE_NAME WHERE $COLUMN_HEADLINE = '$headline'",
+             null
+         ))
+     }
+
+ }

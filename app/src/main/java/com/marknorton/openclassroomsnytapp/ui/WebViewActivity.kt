@@ -5,6 +5,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.ABOUT
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.BACK
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.HELP
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.NOTIFICATION
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.SEARCH
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.URL
 import com.marknorton.openclassroomsnytapp.R
 import kotlinx.android.synthetic.main.activity_web_view.*
 
@@ -16,7 +22,7 @@ class WebViewActivity : AppCompatActivity() {
         val actionbar = supportActionBar
         actionbar!!.setDisplayHomeAsUpEnabled(true)
         // Get the URL passed from Clicked Article and display in WebView
-        val url = intent.getStringExtra("url")
+        val url = intent.getStringExtra(URL)
         if (url != null) {
             // Load the Article in a Webview
             webView.loadUrl(url)
@@ -31,27 +37,29 @@ class WebViewActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var selectedOption = ""
         when (item.itemId) {
-            R.id.menuAbout -> selectedOption = "about"
-            R.id.menuHelp -> selectedOption = "help"
-            R.id.menuNotification -> selectedOption = "notification"
-            R.id.menuSearch -> selectedOption = "search"
+            R.id.menuAbout -> selectedOption = ABOUT
+            R.id.menuHelp -> selectedOption = HELP
+            R.id.menuNotification -> selectedOption = NOTIFICATION
+            R.id.menuSearch -> selectedOption = SEARCH
         }
-        when(selectedOption){
-            "about" ->{  val intent = Intent(this, About::class.java)
-                startActivity(intent)}
-            "help" -> {
+        when (selectedOption) {
+            ABOUT -> {
+                val intent = Intent(this, About::class.java)
+                startActivity(intent)
+            }
+            HELP -> {
                 val intent = Intent(this, Help::class.java)
                 startActivity(intent)
             }
-            "notification" -> {
+            NOTIFICATION -> {
                 val intent = Intent(this, NotificationOptions::class.java)
                 startActivity(intent)
             }
-            "search" -> {
+            SEARCH -> {
                 val intent = Intent(this, TechnologyFragment::class.java)
                 startActivity(intent)
             }
-            "back" -> {
+            BACK -> {
                 this.onBackPressed()
                 return true
             }

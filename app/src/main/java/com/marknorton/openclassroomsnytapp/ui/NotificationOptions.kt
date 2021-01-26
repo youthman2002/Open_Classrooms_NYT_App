@@ -5,6 +5,15 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.ART
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.BUSINESS
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.ENTREPRENEUR
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.NOTIFICATION
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.POLITICS
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.SEARCH
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.SEARCHSTRING
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.SPORTS
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.TRAVEL
 import com.marknorton.openclassroomsnytapp.R
 import kotlinx.android.synthetic.main.activity_notification.*
 
@@ -15,16 +24,16 @@ class NotificationOptions : AppCompatActivity() {
         val actionbar = supportActionBar
         actionbar?.setDisplayHomeAsUpEnabled(true)
 
-        val searchPreferences = getSharedPreferences("search", 0)
-        val artPreferences = getSharedPreferences("art", 0)
-        val businessPreferences = getSharedPreferences("business", 0)
-        val entrepreneurPreferences = getSharedPreferences("entrepreneur", 0)
-        val politicsPreferences = getSharedPreferences("politics", 0)
-        val sportsPreferences = getSharedPreferences("sports", 0)
-        val travelPreferences = getSharedPreferences("travel", 0)
-        val notificationPreferences = getSharedPreferences("notification", 0)
+        val searchPreferences = getSharedPreferences(SEARCH, 0)
+        val artPreferences = getSharedPreferences(ART, 0)
+        val businessPreferences = getSharedPreferences(BUSINESS, 0)
+        val entrepreneurPreferences = getSharedPreferences(ENTREPRENEUR, 0)
+        val politicsPreferences = getSharedPreferences(POLITICS, 0)
+        val sportsPreferences = getSharedPreferences(SPORTS, 0)
+        val travelPreferences = getSharedPreferences(TRAVEL, 0)
+        val notificationPreferences = getSharedPreferences(NOTIFICATION, 0)
 
-        val mySearch = searchPreferences.getString("search","Enter Search Term")
+        val mySearch = searchPreferences.getString(SEARCH, "Enter Search Term")
         etSearch.setText(mySearch)
 
         cbArt.isChecked =
@@ -45,70 +54,68 @@ class NotificationOptions : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 val mySearches = etSearch.text.toString()
-                searchPreferences.edit().putString("search", mySearches).apply()
+                searchPreferences.edit().putString(SEARCH, mySearches).apply()
             }
         })
 
         cbArt.setOnCheckedChangeListener { _, _ ->
             if (cbArt.isChecked) {
-                artPreferences.edit().putBoolean("art", true).apply()
+                artPreferences.edit().putBoolean(ART, true).apply()
             } else {
-                artPreferences.edit().putBoolean("art", false).apply()
+                artPreferences.edit().putBoolean(ART, false).apply()
             }
         }
         cbBusiness.setOnCheckedChangeListener { _, _ ->
             if (cbBusiness.isChecked) {
-                businessPreferences.edit().putBoolean("business", true).apply()
+                businessPreferences.edit().putBoolean(BUSINESS, true).apply()
             } else {
-                businessPreferences.edit().putBoolean("business", false).apply()
+                businessPreferences.edit().putBoolean(BUSINESS, false).apply()
             }
         }
         cbEntrepreneurs.setOnCheckedChangeListener { _, _ ->
             if (cbEntrepreneurs.isChecked) {
-                entrepreneurPreferences.edit().putBoolean("entrepreneur", true).apply()
+                entrepreneurPreferences.edit().putBoolean(ENTREPRENEUR, true).apply()
             } else {
-                entrepreneurPreferences.edit().putBoolean("entrepreneur", false).apply()
+                entrepreneurPreferences.edit().putBoolean(ENTREPRENEUR, false).apply()
             }
         }
         cbPolitics.setOnCheckedChangeListener { _, _ ->
             if (cbPolitics.isChecked) {
-                politicsPreferences.edit().putBoolean("politics", true).apply()
+                politicsPreferences.edit().putBoolean(POLITICS, true).apply()
             } else {
-                politicsPreferences.edit().putBoolean("politics", false).apply()
+                politicsPreferences.edit().putBoolean(POLITICS, false).apply()
             }
         }
         cbSports.setOnCheckedChangeListener { _, _ ->
             if (cbSports.isChecked) {
-                sportsPreferences.edit().putBoolean("sports", true).apply()
+                sportsPreferences.edit().putBoolean(SPORTS, true).apply()
             } else {
-                sportsPreferences.edit().putBoolean("sports", false).apply()
+                sportsPreferences.edit().putBoolean(SPORTS, false).apply()
             }
         }
         cbTravel.setOnCheckedChangeListener { _, _ ->
             if (cbTravel.isChecked) {
-                travelPreferences.edit().putBoolean("travel", true).apply()
+                travelPreferences.edit().putBoolean(TRAVEL, true).apply()
             } else {
-                travelPreferences.edit().putBoolean("travel", false).apply()
+                travelPreferences.edit().putBoolean(TRAVEL, false).apply()
             }
         }
         notificationSwitch.setOnCheckedChangeListener { _, _ ->
             if (notificationSwitch.isChecked) {
-                notificationPreferences.edit().putBoolean("notification", true).apply()
+                notificationPreferences.edit().putBoolean(NOTIFICATION, true).apply()
                 if ((!cbArt.isChecked) && (!cbBusiness.isChecked) && (!cbEntrepreneurs.isChecked) && (!cbPolitics.isChecked) && (!cbSports.isChecked) && (!cbTravel.isChecked) || (etSearch.text.isEmpty())) {
                     Toast.makeText(
                         this@NotificationOptions,
-                        "You MUST choose at least 1 Category and Search Term",
+                        getString(R.string.chooseOne),
                         Toast.LENGTH_LONG
                     ).show()
-                    notificationPreferences.edit().putBoolean("notification", false).apply()
+                    notificationPreferences.edit().putBoolean(NOTIFICATION, false).apply()
                     notificationSwitch.isChecked = false
                 }
             } else {
-                notificationPreferences.edit().putBoolean("notification", false).apply()
+                notificationPreferences.edit().putBoolean(NOTIFICATION, false).apply()
             }
         }
-
-
     }
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

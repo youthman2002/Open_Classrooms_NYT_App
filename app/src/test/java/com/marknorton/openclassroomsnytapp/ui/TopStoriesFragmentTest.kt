@@ -1,7 +1,10 @@
 package com.marknorton.openclassroomsnytapp.ui
 
 
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import junit.framework.TestCase.assertEquals
+import org.junit.Assert
 import org.junit.Test
 import java.io.BufferedReader
 import java.io.IOException
@@ -14,14 +17,13 @@ import java.io.InputStreamReader
 class TopStoriesFragmentTest {
 
     @Test
-    fun testJSONApi() {
+    fun testTopStoriesJSONApi() {
         val filename = "topstories_fragment_sample_data.json"
         val inputStream = readFileWithNewLineFromResources(filename)
 
-
-
-        assertEquals("{\"Top Stories\":\"OK\"}", inputStream)
-
+        val jsonObject: JsonObject = JsonParser().parse(inputStream).asJsonObject
+        Assert.assertTrue(jsonObject.isJsonObject)
+        Assert.assertTrue(jsonObject.get("status").asString == "OK")
     }
 
     @Throws(IOException::class)

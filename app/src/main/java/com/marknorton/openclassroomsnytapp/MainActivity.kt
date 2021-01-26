@@ -24,13 +24,14 @@ class MainActivity : AppCompatActivity() {
 
         // Set up bottom navigation bar and Main Screen View
         val adapter = MyPagerAdapter(supportFragmentManager)
-        adapter.addFragment(TopStoriesFragment(), "Top Stories")
-        adapter.addFragment(MostPopularFragment(), "Most Popular")
-        adapter.addFragment(TechnologyFragment(), "Technology")
+
+        adapter.addFragment(TopStoriesFragment(), getString(R.string.topStories))
+        adapter.addFragment(MostPopularFragment(), getString(R.string.mostPopular))
+        adapter.addFragment(TechnologyFragment(), getString(R.string.technology))
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
-        val notificationPreferences = getSharedPreferences("notification", 0)
-        val notifyChoice = notificationPreferences.getBoolean("notification", false)
+        val notificationPreferences = getSharedPreferences(NOTIFICATION, 0)
+        val notifyChoice = notificationPreferences.getBoolean(NOTIFICATION, false)
         if (notifyChoice) {
             startAlertAtParticularTime()
         }
@@ -42,20 +43,20 @@ class MainActivity : AppCompatActivity() {
         var categories = ""
         val myIntent = Intent(this, NotificationAlarm::class.java)
         //Get Selected Shared Preferences
-        val artPreferences = getSharedPreferences("art", 0)
-        val businessPreferences = getSharedPreferences("business", 0)
-        val entrepreneurPreferences = getSharedPreferences("entrepreneur", 0)
-        val politicsPreferences = getSharedPreferences("politics", 0)
-        val sportsPreferences = getSharedPreferences("sports", 0)
-        val travelPreferences = getSharedPreferences("travel", 0)
-        val searchStrings = getSharedPreferences("search", 0)
-        val artPreference = artPreferences.getBoolean("art", false)
-        val businessPreference = businessPreferences.getBoolean("business", false)
-        val entrepreneurPreference = entrepreneurPreferences.getBoolean("entrepreneur", false)
-        val politicsPreference = politicsPreferences.getBoolean("politics", false)
-        val sportsPreference = sportsPreferences.getBoolean("sports", false)
-        val travelPreference = travelPreferences.getBoolean("travel", false)
-        val searchString = searchStrings.getString("search", "")
+        val artPreferences = getSharedPreferences(ART, 0)
+        val businessPreferences = getSharedPreferences(BUSINESS, 0)
+        val entrepreneurPreferences = getSharedPreferences(ENTREPRENEUR, 0)
+        val politicsPreferences = getSharedPreferences(POLITICS, 0)
+        val sportsPreferences = getSharedPreferences(SPORTS, 0)
+        val travelPreferences = getSharedPreferences(TRAVEL, 0)
+        val searchStrings = getSharedPreferences(SEARCH, 0)
+        val artPreference = artPreferences.getBoolean(ART, false)
+        val businessPreference = businessPreferences.getBoolean(BUSINESS, false)
+        val entrepreneurPreference = entrepreneurPreferences.getBoolean(ENTREPRENEUR, false)
+        val politicsPreference = politicsPreferences.getBoolean(POLITICS, false)
+        val sportsPreference = sportsPreferences.getBoolean(SPORTS, false)
+        val travelPreference = travelPreferences.getBoolean(TRAVEL, false)
+        val searchString = searchStrings.getString(SEARCH, "")
 
         // Create the Categories variable for the URL
         if (artPreference) {
@@ -84,10 +85,10 @@ class MainActivity : AppCompatActivity() {
         val sdate = sdf.format(cal.time)
         val edate = sdf.format(Date())
 
-        myIntent.putExtra("sdate", sdate)
-        myIntent.putExtra("edate", edate)
-        myIntent.putExtra("categories", categories)
-        myIntent.putExtra("searchString", searchString)
+        myIntent.putExtra(SDATE, sdate)
+        myIntent.putExtra(EDATE, edate)
+        myIntent.putExtra(CATEGORIES, categories)
+        myIntent.putExtra(SEARCHSTRING, searchString)
         // Create Pending Intent
         pendingIntent = PendingIntent.getBroadcast(
             this.applicationContext, 280192, myIntent, PendingIntent.FLAG_CANCEL_CURRENT
@@ -104,7 +105,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        //       unregisterReceiver(mReceiver)
         super.onDestroy()
         // Cancels the pendingIntent if it is no longer needed after this activity is destroyed.
         alarmManager.cancel(pendingIntent)
@@ -120,29 +120,62 @@ class MainActivity : AppCompatActivity() {
         var selectedOption = ""
         // Set up Menu
         when (item.itemId) {
-            R.id.menuAbout -> selectedOption = "about"
-            R.id.menuHelp -> selectedOption = "help"
-            R.id.menuNotification -> selectedOption = "notification"
-            R.id.menuSearch -> selectedOption = "search"
+            R.id.menuAbout -> selectedOption = ABOUT
+            R.id.menuHelp -> selectedOption = HELP
+            R.id.menuNotification -> selectedOption = NOTIFICATION
+            R.id.menuSearch -> selectedOption = SEARCH
         }
         when (selectedOption) {
-            "about" -> {
+            ABOUT -> {
                 val intent = Intent(this, About::class.java)
                 startActivity(intent)
             }
-            "help" -> {
+            HELP -> {
                 val intent = Intent(this, Help::class.java)
                 startActivity(intent)
             }
-            "notification" -> {
+            NOTIFICATION -> {
                 val intent = Intent(this, NotificationOptions::class.java)
                 startActivity(intent)
             }
-            "search" -> {
+            SEARCH -> {
                 val intent = Intent(this, SearchArticles::class.java)
                 startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    companion object {
+        const val NOTIFICATION = "notification"
+        const val ART = "art"
+        const val BUSINESS = "business"
+        const val ENTREPRENEUR = "entrepreneur"
+        const val POLITICS = "politics"
+        const val SPORTS = "sports"
+        const val TRAVEL = "travel"
+        const val SEARCH = "search"
+        const val SDATE = "sdate"
+        const val EDATE = "edate"
+        const val CATEGORIES = "categories"
+        const val SEARCHSTRING = "searchstring"
+        const val ABOUT = "about"
+        const val HELP = "help"
+        const val BACK = "back"
+        const val DB_NAME = "NYTDatabase"
+        const val TABLE_NAME = "headlines"
+        const val COLUMN_ID = "id"
+        const val COLUMN_HEADLINE = "headline"
+        const val COLUMN_VIEWED = "viewed"
+        const val DB_VERSION = 1
+        const val URL = "url"
+        const val BASEURL = "https://api.nytimes.com"
+        const val IMAGEBASEURL = "https://www.nytimes.com/"
+        const val APIKEY = "MI5HXzccCCRrvJBlbUJghlzbb2281VRd"
+        const val NEWSDESK = "newsdesk:"
+        const val BEGINDATE = "begin_date"
+        const val ENDDATE = "end_date"
+        const val Q = "q"
+
     }
 }

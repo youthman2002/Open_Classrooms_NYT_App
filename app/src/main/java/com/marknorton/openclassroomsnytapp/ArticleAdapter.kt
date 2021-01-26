@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.marknorton.openclassroomsnytapp.MainActivity.Companion.URL
 import com.marknorton.openclassroomsnytapp.ui.Cell
 import com.marknorton.openclassroomsnytapp.ui.WebViewActivity
 
@@ -51,7 +52,7 @@ class ArticleAdapter(private val articleList: ArrayList<Cell>, private val conte
             // Change the color to show the article has been viewed
             holder.tvHeadline.setTextColor(Color.parseColor("#000000"))
             val intent = Intent(context, WebViewActivity::class.java)
-            intent.putExtra("url", articleList[position].url)
+            intent.putExtra(URL, articleList[position].url)
             context.startActivity(intent)
         }
 

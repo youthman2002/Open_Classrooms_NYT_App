@@ -5,8 +5,8 @@ import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 
 /**
  * Created by Mark Norton on 12/26/2020.
@@ -16,26 +16,47 @@ import org.robolectric.annotation.Config
 class DatabaseTest {
 
     @Test
-    fun databaseTest() {
-        val headline = "3"
-        val db = Database(RuntimeEnvironment.application)
+    fun databaseTest_addHeadline() {
+        val db = Database(getApplicationContext())
+        db.addHeadline(headline)
+
         val sqLiteDatabase = db.writableDatabase
-        val strSQL =
-            "INSERT INTO $TABLE_NAME ($COLUMN_HEADLINE, $COLUMN_VIEWED) VALUES ('$headline', 0)"
+        val strSQL = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_HEADLINE = '$headline'"
         sqLiteDatabase.execSQL(strSQL)
         val result: Cursor = db.getHeadline(headline)
         result.moveToFirst()
-        val theHeadline = result.getString(1)
+        val theResult = result.getString(1)
 
-        assertEquals(headline, theHeadline)
+        assertEquals(headline, theResult)
+    }
+
+    @Test
+    fun databaseTest_getHeadline() {
+        val db = Database(getApplicationContext())
+        db.addHeadline(headline)
+        val result: Cursor = db.getHeadline(headline)
+        result.moveToFirst()
+        val theResult = result.getString(1)
+
+        assertEquals(headline, theResult)
+    }
+
+    @Test
+    fun databaseTest_addViewed() {
+        val db = Database(getApplicationContext())
+
+        db.addHeadline(headline)
+        db.addViewed(headline)
+        val result: Cursor = db.getHeadline(headline)
+        result.moveToFirst()
+        val theResult = result.getString(2)
+
+        assertEquals("1", theResult)
     }
 
     companion object {
-        private const val DB_NAME = "NYTDatabase"
+        private const val headline = "The Test Headline"
         private const val TABLE_NAME = "headlines"
-        private const val COLUMN_ID = "id"
         private const val COLUMN_HEADLINE = "headline"
-        private const val COLUMN_VIEWED = "viewed"
-        private const val DB_VERSION = 1
     }
 }

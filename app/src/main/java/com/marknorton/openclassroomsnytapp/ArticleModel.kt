@@ -80,14 +80,19 @@ data class TechDocs(
 data class TechData(
     @SerializedName("news_desk")
     val section: String?,
+
     @SerializedName("section_name")
     val subsection: String?,
+
     @SerializedName("web_url")
     val url: String?,
+
     @SerializedName("pub_date")
     val publishDate: String?,
+
     @SerializedName("headline")
     var headlineData: TechHeadline?,
+
     @SerializedName("multimedia")
     var mediaData: List<TechMedia>?
 )
@@ -104,41 +109,3 @@ data class TechMedia(
     val mediaFormat: String?
 )
 
-
-data class SearchModel(
-    val status: String?,
-    @SerializedName("response")
-    var results: SearchDocs
-)
-
-data class SearchDocs(
-    @SerializedName("docs")
-    var docs: List<SearchData>?
-)
-
-data class SearchData(
-    @SerializedName("news_desk")
-    val section: String?,
-    @SerializedName("section_name")
-    val subsection: String?,
-    @SerializedName("web_url")
-    val url: String?,
-    @SerializedName("pub_date")
-    val publishDate: String?,
-    @SerializedName("headline")
-    var headlineData: SearchHeadline?,
-    @SerializedName("multimedia")
-    var mediaData: List<SearchMedia>?
-)
-
-data class SearchHeadline(
-    @SerializedName("main")
-    val headline: String?
-)
-
-data class SearchMedia(
-    @SerializedName("url")
-    val mediaUrl: String?,
-    @SerializedName("subtype")
-    val mediaFormat: String?
-)
