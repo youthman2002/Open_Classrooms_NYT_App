@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 // Making a change in order to import to Travis
-        // fixing
+        // fixing 2
 
 
         // Set up bottom navigation bar and Main Screen View
