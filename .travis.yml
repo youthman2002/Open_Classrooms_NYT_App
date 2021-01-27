@@ -2,10 +2,10 @@ language: java
 jdk: oraclejdk7
 env:
   matrix:
-    - ANDROID_SDKS=android-18,sysimg-18  ANDROID_TARGET=android-18  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-29,sysimg-29  ANDROID_TARGET=android-29  ANDROID_ABI=armeabi-v7a
 branches:
   only:
-    - master
+    - updaTE
 before_install:
   - chmod +x gradlew
   # Install base Android SDK
