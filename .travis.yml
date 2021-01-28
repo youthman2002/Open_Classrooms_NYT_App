@@ -20,14 +20,14 @@ android:
 script:
   - ./gradlew assemble lint
 after_script:
+  - list-avds
   # Emulator Management: Create, Start and Wait
   - android list targets
-  - list-avds
+
   - echo no | android create avd --force -n test -t android-28 --abi x86
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
-  - /gradlew connectedCheck
   # now run the tests
-gradle build connectedCheck
-  ./gradlew build connectedCheck
+  - gradle build connectedCheck
+  - ./gradlew build connectedCheck
