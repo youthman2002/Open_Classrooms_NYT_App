@@ -25,7 +25,7 @@ after_script:
   - android list targets
 
   - echo no | android create avd --force -n test -t android-28 --abi x86
-  - emulator -avd test -no-skin -no-audio -no-window &
+  - emulator -avd Android 10 -WXGA800 -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
   # now run the tests
