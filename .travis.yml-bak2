@@ -29,4 +29,4 @@ after_script:
   - /gradlew connectedCheck
   # now run the tests
 gradle build connectedCheck
-  ./gradlew build connectedCheck
+./gradlew build connectedCheck
